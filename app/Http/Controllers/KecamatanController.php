@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Kecamatan;
-use App\Kota;
+use App\Models\kecamatan;
+use App\Models\kota;
 use Illuminate\Http\Request;
 
-// compact = membuat array
 class KecamatanController extends Controller
 {
     public function __construct(){
@@ -28,12 +27,12 @@ class KecamatanController extends Controller
     public function store(Request $request)
     {
         $kecamatan = new Kecamatan();
-        $kecamatan->kode_kecamatan = $request->kode_kecamatan;
-        $kecamatan->nama_kecamatan = $request->nama_kecamatan;
         $kecamatan->id_kota = $request->id_kota;
+        $kecamatan->kode_kec = $request->kode_kec;
+        $kecamatan->nama_kec = $request->nama_kec;
         $kecamatan->save();
         return redirect()->route('kecamatan.index')
-                ->with(['message'=>'Data kecamatan berhasil']);
+                ->with(['message'=>'Data kecamatan berhasil dibuat']);
     }
 
     public function show($id)
@@ -54,8 +53,8 @@ class KecamatanController extends Controller
     public function update(Request $request, $id)
     {
         $kecamatan = Kecamatan::findOrFail($id);
-        $kecamatan->kode_kecamatan = $request->kode_kecamatan;
-        $kecamatan->nama_kecamatan = $request->nama_kecamatan;
+        $kecamatan->kode_kec = $request->kode_kec;
+        $kecamatan->nama_kec = $request->nama_kec;
         $kecamatan->id_kota = $request->id_kota;
         $kecamatan->save();
         return redirect()->route('kecamatan.index')

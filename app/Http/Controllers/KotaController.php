@@ -32,7 +32,8 @@ class KotaController extends Controller
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
-        return redirect()->route('kota.index');
+        return redirect()->route('kota.index')
+            ->with(['message'=>'Data kota berhasil dibuat']);
     }
 
     public function show($id)
@@ -50,17 +51,33 @@ class KotaController extends Controller
 
     public function update(Request $request, $id)
     {
+        //
+        $request->validate(
+            [
+                'kode_kota' => 'required|unique:kotas',
+                'nama_kota' => 'required|unique:kotas',
+            ],
+            [
+                'kode_kota.required' => 'Kode kota harus diisi',
+                'kode_kota.unique' => 'Kode kota telah terdaftar',
+                'nama_kota.required' => 'kota harus diisi',
+                'nama_kota.unique' => 'kota telah terdaftar'
+            ]
+            );
+
         $kota = Kota::findOrFail($id);
+        $kota->id_provinsi = $request->id_provinsi;
         $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
-        $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
-        return redirect()->route('kota.index')->with(['message'=>'Data berhasil di edit!']);
+        return redirect()->route('kota.index')
+            ->with(['message'=>'Data berhasil di edit']);
     }
 
     public function destroy($id)
     {
         $kota = Kota::findOrFail($id)->delete();
-        return redirect()->route('kota.index')->with(['message'=>'Data berhasil dihapus!']);
+        return redirect()->route('kota.index')
+            ->with(['message'=>'Data berhasil dihapus']);
     }
 }

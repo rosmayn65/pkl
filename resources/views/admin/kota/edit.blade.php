@@ -17,7 +17,7 @@
                             <select name="id_provinsi" class="form-control">
                             @foreach($provinsi as $data)
                             <option value="{{$data->id}}"
-                            {{$data->id == $kota->id_provinsi ? "selected": ""}}>{{$data->nama_provinsi}}</option>
+                            {{$data->id == $kota->id_provinsi ? "selected": ""}}>{{$data->nama_prov}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -26,14 +26,11 @@
                             <input type="text" name="kode_kota" class="form-control" value="{{$kota->kode_kota}}" required>
                         </div>
                         <div class="form-group">
-                            <label for="">Nama Kota</label>
+                            <label for="">Kota</label>
                             <input type="text" name="nama_kota" class="form-control" value="{{$kota->nama_kota}}" required>  
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary btn-lg btn-block" onclick="return confirm('Apakah anda yakin?')">Simpan</button>
-                        </div>
-                        <div class="form-group">
-                            <a href="{{url()->previous()}}" class="btn btn-outline-secondary btn-lg btn-block">Kembali</a>
                         </div>
                     </form>
                 </div>

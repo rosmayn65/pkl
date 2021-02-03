@@ -4,35 +4,13 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Global
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('admin/negara')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Negara</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('admin/kasusglobal')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kasus Global</p>
-                </a>
-              </li>
               <ul class="nav nav-treeview">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Data Wilayah
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url('admin/provinsi')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -58,9 +36,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('admin/RW')}}" class="nav-link">
+                <a href="{{url('admin/rw')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>RW</p>
+                  <p>Rw</p>
                 </a>
               </li>
               <li class="nav-item">

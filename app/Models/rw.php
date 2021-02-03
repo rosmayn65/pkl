@@ -9,14 +9,14 @@ class rw extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_kelurahan','nama'];
+    protected $fillable = ['id_rw','rw','id_kel'];
     public $timestamps = true;
 
     public function kelurahan(){
-        return $this->belongsTo('App\Kelurahan','id_kelurahan');
+        return $this->belongsTo('App\Models\kelurahan','id_kel');
     }
     
     public function rw(){
-        return $this->hasMany('App\Tracking','id_tracking');
+        return $this->hasMany('App\Models\Tracking','id_tracking');
     }
 }

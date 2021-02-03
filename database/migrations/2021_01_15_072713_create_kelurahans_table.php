@@ -14,7 +14,10 @@ class CreateKelurahansTable extends Migration
     public function up()
     {
         Schema::create('kelurahans', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->foreignId('id_kec')->constrained('kecamatans')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_kel');
+            $table->string('nama_kel');
             $table->timestamps();
         });
     }

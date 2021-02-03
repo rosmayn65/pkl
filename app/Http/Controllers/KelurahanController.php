@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelurahan;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
 class KelurahanController extends Controller
@@ -26,8 +27,9 @@ class KelurahanController extends Controller
     public function store(Request $request)
     {
         $kelurahan = new Kelurahan();
-        $kelurahan->nama_kelurahan = $request->nama_kelurahan;
-        $kelurahan->id_kecamatan = $request->id_kecamatan;
+        $kelurahan->id_kel = $request->id_kel;
+        $kelurahan->nama_kel = $request->nama_kel;
+        $kelurahan->id_kec = $request->id_kec;
         $kelurahan->save();
         return redirect()->route('kelurahan.index')
                 ->with(['message'=>'Data kelurahan berhasil dibuat']);
@@ -51,8 +53,9 @@ class KelurahanController extends Controller
     public function update(Request $request, $id)
     {
         $kelurahan = Kelurahan::findOrFail($id);
-        $kelurahan->nama_kelurahan = $request->nama_kelurahan;
-        $kelurahan->id_kecamatan = $request->id_kecamatan;
+        $kelurahan->id_kel = $request->id_kel;
+        $kelurahan->nama_kel = $request->nama_kel;
+        $kelurahan->id_kec = $request->id_kec;
         $kelurahan->save();
         return redirect()->route('kelurahan.index')
                 ->with(['message'=>'Data kelurahan berhasil diedit']);

@@ -4,33 +4,34 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-                    @if (session('message'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('message') }}
-                        </div>
-                    @endif
             <div class="card">
                 <div class="card-header">
                     Data Provinsi
-                    <a href="{{route('provinsi.create')}}" class="float-right">Tambah Data</a>
+                    <a href="{{route('provinsi.create')}}"
+                        class="btn btn-primary float-right">
+                        Tambah Data
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
+                        <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Kode Provinsi</th>
                                 <th>Nama Provinsi</th>
-                                <th>Aksi</th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action</th>
                             </tr>
+                        </thead>
+
+                        <tbody>
                             @php $no = 1; @endphp
                             @foreach($provinsi as $data)
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{$data->kode_prov}}</td>
                                 <td>{{$data->nama_prov}}</td>
-                                <td>
-                                    <form action="{{route('provinsi.destroy',$data->id)}}" method="POST">
+                                <td><form action="{{route('provinsi.destroy',$data->id)}}" method="POST">
                                         @csrf @method('DELETE')
                                         <a href="{{route('provinsi.edit',$data->id)}}" class="btn btn-warning">
                                         <img src="https://img.icons8.com/android/24/000000/edit.png"/>
@@ -55,7 +56,21 @@
 </div>
 @endsection
 
-@section('css')
-@endsection
-@section('css')
+@section('js')
+<script src="{{asset('assets/plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 @endsection

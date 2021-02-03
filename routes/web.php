@@ -6,6 +6,8 @@ use App\Http\Controllers\KotaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\RWController;
+use App\Http\Controllers\TrackingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
-    Route::resource('RW', RwController::class);
+    Route::resource('rw', RwController::class);
+});
+Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
+    Route::resource('tracking', TrackingController::class);
 });

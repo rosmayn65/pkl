@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class trackings extends Model
+class tracking extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_rw','positif','sembuh','meninggal','tanggal'];
+    protected $fillable = ['id_rw','jml_positif','jml_meninggal','jml_sembuh','tanggal'];
     public $timestamps = true;
 
     public function rw(){
-        return $this->belongsTo('App\Rw', 'id_rw');
+        return $this->belongsTo('App\Models\Rw', 'id_rw');
     }
 
 }

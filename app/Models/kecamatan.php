@@ -9,7 +9,7 @@ class kecamatan extends Model
 {
     use HasFactory;
      
-    protected $fillable = ['kode_kecamatan','nama_kecamatan','id_kota'];
+    protected $fillable = ['kode_kec','nama_kec','id_kota'];
     protected$table='kecamatans';
     public $timestamps = true;
 

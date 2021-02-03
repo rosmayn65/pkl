@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\rw;
+use App\Models\kelurahan;
 use Illuminate\Http\Request;
 
 class RwController extends Controller
@@ -25,12 +26,24 @@ class RwController extends Controller
 
     public function store(Request $request)
     {
+        //
+        $request->validate(
+            [
+                'rw' => 'required|unique:rws'
+            ],
+            [
+                'rw.required' => 'No Rw harus diisi',
+                'rw.unique' => 'Rw telah terdaftar'
+            ]
+            );
+
         $rw = new Rw();
-        $rw->nama = $request->nama;
-        $rw->id_kelurahan = $request->id_kelurahan;
+        $rw->id_rw = $request->id_rw;
+        $rw->rw = $request->rw;
+        $rw->id_kel = $request->id_kel;
         $rw->save();
         return redirect()->route('rw.index')
-                ->with(['message'=>'DATA RW BERHASIL ANDA BUAT']);
+                ->with(['message'=>'Data rw berhasil dibuat']);
     }
 
     public function show($id)
@@ -51,17 +64,17 @@ class RwController extends Controller
     public function update(Request $request, $id)
     {
         $rw = Rw::findOrFail($id);
-        $rw->nama = $request->nama;
-        $rw->id_kelurahan = $request->id_kelurahan;
+        $rw->rw = $request->rw;
+        $rw->id_kel = $request->id_kel;
         $rw->save();
         return redirect()->route('rw.index')
-                ->with(['message'=>'DATA RW BERHASIL ANDA EDIT']);
+                ->with(['message'=>'Data rw berhasil diedit']);
     }
 
     public function destroy($id)
     {
         $rw = Rw::findOrFail($id)->delete();
         return redirect()->route('rw.index')
-                ->with(['message'=>'DATA RW BERHASIL ANDA HAPUS']);
+                ->with(['message'=>'Data rw berhasil dihapus']);
     }
 }

@@ -10,7 +10,7 @@
                 <div class="card-body">
                         <div class="form-group">
                             <label for="">Id Provinsi</label>
-                            <input type="text" name="{{$kota->provinsi->id}}" class="form-control" value="{{$kota->provinsi->nama_provinsi}}" readonly>  
+                            <input type="text" name="{{$kota->provinsi->id}}" class="form-control" value="{{$kota->provinsi->nama_prov}}" readonly>  
                         </div>
                         <div class="form-group">
                             <label for="">Kode Kota</label>

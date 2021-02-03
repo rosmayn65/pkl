@@ -14,7 +14,12 @@ class CreateTrackingsTable extends Migration
     public function up()
     {
         Schema::create('trackings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->foreignId('id_rw')->constrained('rws')->onUpdate('cascade')->onDelete('cascade');
+            $table->String('jml_positif');
+            $table->String('jml_meninggal');
+            $table->String('jml_sembuh');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

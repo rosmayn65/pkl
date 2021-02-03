@@ -3,17 +3,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-                    @if (session('message'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('message') }}
-                        </div>
-                    @endif
             <div class="card">
                 <div class="card-header">
                     Data Rw
                     <a href="{{route('rw.create')}}"
-                        class="float-right">
-                        <img src="https://img.icons8.com/ios/30/000000/create-order--v1.png"/>
+                        class="btn btn-primary float-right">
+                            Tambah Data
                     </a>
                 </div>
                 <div class="card-body">
@@ -21,9 +16,10 @@
                         <table class="table" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>Nomor</th>
-                                    <th>Id Kelurahan</th>
+                                    <th>No</th>
+                                    <th>Id Rw</th>
                                     <th>Rw</th>
+                                    <th>Nama Kelurahan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -32,17 +28,18 @@
                                 @foreach($rw as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$data->kelurahan->id}}</td>
-                                    <td>{{$data->nama}}</td>
+                                    <td>{{$data->id_rw}}</td>
+                                    <td>{{$data->rw}}</td>
+                                    <td>{{$data->kelurahan->nama_kel}}</td>
                                     <td>
                                         <form action="{{route('rw.destroy',$data->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{route('rw.show',$data->id)}}" class="btn btn-primary">
-                                        <img src="https://img.icons8.com/material-outlined/24/000000/visible--v2.png"/>
-                                        </a> |
                                         <a href="{{route('rw.edit',$data->id)}}" class="btn btn-warning">
                                         <img src="https://img.icons8.com/android/24/000000/edit.png"/>
+                                        </a> |
+                                        <a href="{{route('rw.show',$data->id)}}" class="btn btn-primary">
+                                        <img src="https://img.icons8.com/material-outlined/24/000000/visible--v2.png"/>
                                         </a> |
                                         <button type="submit" class="btn btn-danger" onclick="return confirm
                                         ('Apakah anda yakin?')">
