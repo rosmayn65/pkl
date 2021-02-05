@@ -1,10 +1,11 @@
 <?php
 
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProvinsiController;
 use App\Http\Controllers\Api\ApiController;
+use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,18 @@ use App\Http\Controllers\Api\ApiController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-// ApiProvinsi
-Route::get('provinsi', [ProvinsiController::class, 'index']);
-Route::post('provinsi', [ProvinsiController::class, 'store']);
-Route::get('provinsi/{id}', [ProvinsiController::class, 'show']);
-Route::post('provinsi/update/{id}', [ProvinsiController::class, 'update']);
-Route::delete('provinsi/{id}', [ProvinsiController::class, 'destroy']);
+
+//Api crud provinsi
+Route::get('/provinsi',[ProvinsiController::class,'provinsi']);
+Route::get('/kota',[ProvinsiController::class,'kota']);
+Route::get('/kecamatan',[ProvinsiController::class,'kecamatan']);
+Route::get('/kelurahan',[ProvinsiController::class,'kelurahan']);
+Route::get('/rw',[ProvinsiController::class,'rw']);
+Route::get('/provinsi',[ProvinsiController::class,'index']);
+Route::post('/provinsi/store',[ProvinsiController::class,'store']);
+Route::get('/provinsi/{id?}',[ProvinsiController::class,'show']);
+Route::put('/provinsi/{id?}',[ProvinsiController::class,'update']);
+Route::delete('/provinsi/{id?}',[ProvinsiController::class,'destroy']);
 
 //Api Crud Api
 Route::get('/api',[ApiController::class,'rw']);

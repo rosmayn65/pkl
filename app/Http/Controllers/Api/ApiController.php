@@ -11,20 +11,19 @@ use DB;
 
 class ApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function Rw()
-    {
-
-        $rw = DB::table('tracking')->select([
-            DB::raw('SUM(jml_positif) as Positif'),
-            DB::raw('SUM(jml_sembuh) as Sembuh'),
-            DB::raw('SUM(jml_meninggal) as Meninggal'),
-        ])
-        ->groupBy('tanggal')->get()';
+    public function Provinsi(){
+        $provinsi = DB::table('provinsi')
+        ->select('provinsi.nama_prov','provinsi.kode_prov',
+            DB::raw('SUM(tracking.jml_positif) as Positif'),
+            DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
+            DB::raw('SUM(tracking.jml_meninggal) as Meninggal'))
+            ->join('kota','provinsi.id','=','kotas.id_prov')
+            ->join('kecamatan','kota.id','=','kecamatan.id_kota')
+            ->join('kelurahan','kecamatan.id','=','kelurahan.id_kec')
+            ->join('rw','kelurahan.id','=','rw.id_kel')
+            ->join('tracking','rw.id','=','tracking.id_rw')
+            ->groupBy('provinsi.id','tanggal')
+            ->get();
 
         $positif = DB::table('rw')
                 ->select('tracking.jml_positif',
@@ -41,81 +40,197 @@ class ApiController extends Controller
                 'tracking.jml_sembuh','tracking.jml_meninggal')
                 ->join('tracking','rw.id','=','tracking.id_rw')
                 ->sum('tracking.jml_meninggal');
-                    return response([
-                        'success' => true,
-                        'data'    => [Hari Ini => $rw,
-                    ],
-                        'Total' => ['Jumlah Positif' => $positif,
-                        'Jumlah Sembuh' => $sembuh,
-                        'Jumlah Meninggal' => meninggal,
-                    ],
-                        'message' => 'Berhasil'
-                    ],200);
+
+        // dd($provinsi);
+            return response([
+            'success' => true,
+            'data' => ['Hari Ini' => $provinsi,
+            ],
+
+            'Total' =>[
+                'Jumlah Positif' => $positif,
+                'Jumlah Sembuh' => $sembuh,
+                'Jumlah Meninggal' => $meninggal,
+            ],
+                    
+                'message' => 'Berhasil'
+            ],200);
+
+            // $data = [
+            //     'status' => 200,
+            //     'data' => $provinsi,
+            //     'message' => 'Berhasil'
+            // ];
+            // return response()->json($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function Rw()
     {
-        //
+        $rw = DB::table('tracking')
+                ->select([
+                    DB::raw('SUM(tracking.jml_positif) as Positif'),
+                    DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
+                    DB::raw('SUM(tracking.jml_meninggal) as Meninggal'),
+                ])
+                ->groupBy('tanggal')->get();
+
+        $positif = DB::table('rw')
+                ->select('tracking.jml_positif',
+                'tracking.jml_sembuh','tracking.jml_meninggal')
+                ->join('tracking','rw.id','=','tracking.id_rw')
+                ->sum('tracking.jml_positif');
+        $sembuh = DB::table('rw')
+                ->select('tracking.jml_positif',
+                'tracking.jml_sembuh','tracking.jml_meninggal')
+                ->join('tracking','rw.id','=','tracking.id_rw')
+                ->sum('tracking.jml_sembuh');
+        $meninggal = DB::table('rw')
+                ->select('tracking.jml_positif',
+                'tracking.jml_sembuh','tracking.jml_meninggal')
+                ->join('tracking','rw.id','=','tracking.id_rw')
+                ->sum('tracking.jml_meninggal');
+
+             return response([
+                'success' => true,
+                'data' => ['Hari Ini' => $rw,
+                          ],
+                'Total' => ['Jumlah Positif'   => $positif,
+                            'Jumlah Sembuh'    => $sembuh,
+                            'Jumlah Meninggal' => $meninggal,
+                          ],
+                'message' => 'Berhasil'
+            ], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function kota()
     {
-        //
+        $kota = DB::table('kota')
+                ->select('provinsi.nama_prov','kota.kode_kota','kota.nama_kota',
+                DB::raw('SUM(tracking.jml_positif) as Positif'),
+                DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
+                DB::raw('SUM(tracking.jml_meninggal) as Meninggal'))
+                ->join('provinsi','provinsi.id','=','kota.id_prov')
+                ->join('kecamatan','kotas.id','=','kecamatan.id_kota')
+                ->join('kelurahan','kecamatan.id','=','kelurahan.id_kec')
+                ->join('rw','kelurahan.id','=','rw.id_kel')
+                ->join('tracking','rw.id','=','tracking.id_rw')
+                ->groupBy('kota.id')
+                ->get();
+
+        return response([
+            'success' => true,
+            'data' => $kota,
+            'message' => 'Berhasil'
+        ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function kecamatan()
     {
-        //
+        $kecamatan = DB::table('kecamatan')
+                    ->select('kota.nama_kota','kecamatan.kode_kec','kecamatan.nama_kec',
+                    DB::raw('SUM(tracking.jml_positif) as Positif'),
+                    DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
+                    DB::raw('SUM(tracking.jml_meninggal) as Meninggal'))
+                    ->join('kota','kota.id','=','kecamatan.id_kota')
+                    ->join('kelurahan','kecamatan.id','=','kelurahan.id_kec')
+                    ->join('rw','kelurahan.id','=','rw.id_kel')
+                    ->join('tracking','rw.id','=','tracking.id_rw')
+                    ->groupBy('kota.id')
+                    ->get();
+
+        return response([
+            'success' => true,
+            'data' => $kecamatan,
+            'message' => 'Berhasil'
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function kelurahan()
     {
-        //
+        $kelurahan = DB::table('kelurahan')
+        ->select('kecamatan.nama_kec','kelurahan.nama_kel',
+            DB::raw('SUM(tracking.jml_positif) as Positif'),
+            DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
+            DB::raw('SUM(tracking.jml_meninggal) as Meninggal'))
+                ->join('kecamatan','kecamatan.id','=','kelurahan.id_kec')
+                ->join('rw','kelurahan.id','=','rw.id_kel')
+                ->join('tracking','rw.id','=','tracking.id_rw')
+                ->groupBy('kelurahan.id')
+                ->get();
+
+        return response([
+            'success' => true,
+            'data'    => $kelurahan,
+            'message' => 'Berhasil'
+        ], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function positif()
     {
-        //
+        $positif = DB::table('rw')
+            ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+            ->join('tracking','rw.id','=','tracking.id_rw')
+            ->sum('tracking.jml_positif');
+
+        return response([
+            'success' => true,
+            'data' => 'Data Positif',
+                      'Jumlah Positif' => $positif,       
+            'message' => 'Berhasil'
+        ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function sembuh()
     {
-        //
+        $sembuh = DB::table('rw')
+              ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+              ->join('tracking','rw.id','=','tracking.id_rw')
+              ->sum('tracking.jml_sembuh');
+
+        return response([
+            'success' => true,
+            'data' => 'Data Sembuh',
+                      'Jumlah Sembuh' => $sembuh,       
+            'message' => 'Berhasil'
+        ], 200);
+    }
+
+    public function meninggal()
+    {
+        $meninggal = DB::table('rw')
+        ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+        ->join('tracking','rw.id','=','tracking.id_rw')
+        ->sum('tracking.jml_meninggal');
+
+        return response([
+            'success' => true,
+            'data' => 'Data Meninggal',
+                      'Jumlah Meninggal' => $meninggal,       
+            'message' => 'Berhasil'
+        ], 200);
+    }
+    public function indonesia()
+    {
+        $positif = DB::table('rws')
+              ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+              ->join('tracking','rw.id','=','tracking.id_rw')
+              ->sum('trackings.jml_positif');
+        $sembuh = DB::table('rw')
+              ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+              ->join('tracking','rw.id','=','tracking.id_rw')
+              ->sum('tracking.jml_sembuh');
+        $meninggal = DB::table('rw')
+              ->select('tracking.jml_sembuh','tracking.jml_positif','tracking.jml_meninggal')
+              ->join('tracking','rw.id','=','tracking.id_rw')
+              ->sum('tracking.jml_meninggal');
+
+            return response([
+                'success' => true,
+                'data' => 'Data Indonesia',
+                          'Jumlah Positif'   => $positif,
+                          'Jumlah Sembuh'    => $sembuh,
+                          'Jumlah Meninggal' => $meninggal,        
+                'message' => 'Berhasil'
+            ], 200);
     }
 }
