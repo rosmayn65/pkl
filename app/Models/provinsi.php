@@ -9,7 +9,7 @@ class provinsi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kode_prov','nama_prov'];
+    protected $fillable = ['id','kode_prov','nama_prov'];
     public $timestamps = true;
 
     public function kota(){

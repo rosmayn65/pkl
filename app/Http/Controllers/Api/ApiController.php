@@ -12,34 +12,44 @@ use DB;
 class ApiController extends Controller
 {
     public function Provinsi(){
-        $provinsi = DB::table('provinsi')
-        ->select('provinsi.nama_prov','provinsi.kode_prov',
+        $provinsi = DB::table('Provinsis')
+        ->select('provinsis.nama_prov','provinsis.kode_prov',
             DB::raw('SUM(tracking.jml_positif) as Positif'),
             DB::raw('SUM(tracking.jml_sembuh) as Sembuh'),
             DB::raw('SUM(tracking.jml_meninggal) as Meninggal'))
-            ->join('kota','provinsi.id','=','kotas.id_prov')
-            ->join('kecamatan','kota.id','=','kecamatan.id_kota')
-            ->join('kelurahan','kecamatan.id','=','kelurahan.id_kec')
-            ->join('rw','kelurahan.id','=','rw.id_kel')
-            ->join('tracking','rw.id','=','tracking.id_rw')
-            ->groupBy('provinsi.id','tanggal')
-            ->get();
+            ->join('kotas','provinsis.id','=','kota.id_provinsi')
+            ->join('kecamatans','kotas.id','=','kecamatans.id_kota')
+            ->join('kelurahans','kecamatans.id','=','kelurahans.id_kec')
+            ->join('rws','kelurahans.id','=','rws.id_kel')
+            ->join('trackings','rws.id','=','trackings.id_rw')
+            ->groupBy('provinsis.id')->get();
 
-        $positif = DB::table('rw')
-                ->select('tracking.jml_positif',
-                'tracking.jml_sembuh','tracking.jml_meninggal')
-                ->join('tracking','rw.id','=','tracking.id_rw')
-                ->sum('tracking.jml_positif');
-        $sembuh = DB::table('rw')
-                ->select('tracking.jml_positif',
-                'tracking.jml_sembuh','tracking.jml_meninggal')
-                ->join('tracking','rw.id','=','tracking.id_rw')
-                ->sum('tracking.jml_sembuh');
-        $meninggal = DB::table('rw')
-                ->select('tracking.jml_positif',
-                'tracking.jml_sembuh','tracking.jml_meninggal')
-                ->join('tracking','rw.id','=','tracking.id_rw')
-                ->sum('tracking.jml_meninggal');
+        $positif = DB::table('provinsis')
+            ->join('kotas','kotas.id_provinsi','=','id')
+            ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
+            ->join('kelurahans','kelurahans.id_kec','=','kecamatans.id')
+            ->join('rws','rws.id_kel','=','kelurahans.id')
+            ->join('trackings','trackings.id_rw','=','rws.id')
+            ->select('trackings.jml_positif')
+            ->sum('trackings.jml_positif');
+        $sembuh = DB::table('provinsis')
+            ->join('kotas','kotas.id_provinsi','=','id')
+            ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
+            ->join('kelurahans','kelurahans.id_kec','=','kecamatans.id')
+            ->join('rws','rws.id_kel','=','kelurahans.id')
+            ->join('trackings','trackings.id_rw','=','rws.id')
+            ->select('trackings.jml_sembuh')
+            ->sum('trackings.jml_sembuh');
+        $meninggal = DB::table('provinsis')
+            ->join('kotas','kotas.id_provinsi','=','id')
+            ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
+            ->join('kelurahans','kelurahans.id_kec','=','kecamatans.id')
+            ->join('rws','rws.id_kel','=','kelurahans.id')
+            ->join('trackings','trackings.id_rw','=','rws.id')
+            ->select('trackings.jml_positif',
+            'trackings.jml_sembuh','trackings.jml_meninggal')
+
+            ->sum('trackings.jml_meninggal');
 
         // dd($provinsi);
             return response([
@@ -232,5 +242,15 @@ class ApiController extends Controller
                           'Jumlah Meninggal' => $meninggal,        
                 'message' => 'Berhasil'
             ], 200);
+    }
+    
+    public function global(){
+        $url = Http::get('https://api.kawalcorona.com')->json();
+        $data = [
+            'success' => true,
+            'data' => '$url',        
+            'message' => 'Menampilkan Global'
+        ];
+        return response()->json($data, 200);
     }
 }

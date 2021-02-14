@@ -9,7 +9,7 @@ class kelurahan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_kel','nama_kel','id_kec'];
+    protected $fillable = ['id','id_kel','nama_kel','id_kec'];
     protected $table = "kelurahans";
     public $timestamps = true;
 

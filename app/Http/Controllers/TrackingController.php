@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tracking;
 use App\Models\Rw;
+use App\Http\Controllers\DB;
 use Illuminate\Http\Request;
 
 class trackingController extends Controller
@@ -14,36 +15,32 @@ class trackingController extends Controller
     }
     public function index()
     {
-        $tracking = tracking::with('rw.kelurahan.kecamatan.kota.provinsi')->orderBy('id','DESC')->get();
-        // dd($tracking);
-        return view('admin.tracking.index',compact('tracking'));
+       $tracking = Tracking::with('rw.kelurahan.kecamatan.kota.provinsi')->get();
+       return view('admin.tracking.index',compact('tracking'));
     }
 
     public function create()
     {
-        $rw = Rw::all();
-        return view('admin.tracking.create',compact('rw'));
+        return view('admin.tracking.create');
     }
 
     public function store(Request $request)
     {
-        //validasi 
         $request->validate([
-            'rw' => 'required:tracking',
             'jml_positif' => 'required:tracking',
             'jml_sembuh' => 'required:tracking',
             'jml_meninggal' => 'required:tracking',
             'tanggal' => 'required:tracking'
         ],[
-            'rw.required'=> 'id rw Harus diisi',
-            'jml_positif.required'=> 'positif Harus diisi',
-            'jml_sembuh.required'=> 'sembuh Harus diisi',
-            'jml_meninggal.required'=> 'meninggal Harus diisi',
-            'tanggal.required'=> 'tanggal Harus diisi',
+            'id_rw.required'=> 'id rw Harus diisi',
+            'jml_positif.required'=> 'Data Harus diisi',
+            'jml_sembuh.required'=> 'Data Harus diisi',
+            'jml_meninggal.required'=> 'Data Harus diisi',
+            'tanggal.required'=> 'Tanggal Harus diisi',
         ]);
         
         $tracking = new tracking();
-        $tracking->rw = $request->rw;
+        $tracking->id_rw = $request->id_rw;
         $tracking->jml_positif = $request->jml_positif;
         $tracking->jml_sembuh = $request->jml_sembuh;
         $tracking->jml_meninggal = $request->jml_meninggal;
@@ -61,7 +58,6 @@ class trackingController extends Controller
 
     public function edit($id)
     {
-        $rw = Rw::all();
         $tracking = tracking::findOrFail($id);
         return view('admin.tracking.edit',compact('tracking','rw'));
     }
@@ -69,8 +65,21 @@ class trackingController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'jml_positif' => 'required:tracking',
+            'jml_sembuh' => 'required:tracking',
+            'jml_meninggal' => 'required:tracking',
+            'tanggal' => 'required:tracking'
+        ],[
+            'id_rw.required'=> 'id rw Harus diisi',
+            'jml_positif.required'=> 'Data Harus diisi',
+            'jml_sembuh.required'=> 'Data Harus diisi',
+            'jml_meninggal.required'=> 'Data Harus diisi',
+            'tanggal.required'=> 'Tanggal Harus diisi',
+        ]);
+
         $tracking = tracking::findOrFail($id);
-        $tracking->rw = $request->rw;
+        $tracking->id_rw = $request->id_rw;
         $tracking->jml_positif = $request->jml_positif;
         $tracking->jml_sembuh = $request->jml_sembuh;
         $tracking->jml_meninggal = $request->jml_meninggal;

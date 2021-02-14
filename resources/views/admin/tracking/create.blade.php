@@ -10,17 +10,15 @@
                 </div>
                 <div class="card-body">
                     <form action="{{route('tracking.store')}}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col">
-                            @livewireStyles
-                                @livewire('dropdowns')
-                                @livewireScripts
-                            </div>
+                    @csrf
+                    <div class="row">
+                        <div class="col">
+                            @livewire('dropdowns')
                         </div>
+                    </div>
                         <div class="form-group">
-                              <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Simpan</button>
-                         </div>
+                            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>

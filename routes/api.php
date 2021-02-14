@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ProvinsiController;
 use App\Http\Controllers\Api\ApiController;
@@ -22,21 +26,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Api crud provinsi
-Route::get('/provinsi',[ProvinsiController::class,'provinsi']);
-Route::get('/kota',[ProvinsiController::class,'kota']);
-Route::get('/kecamatan',[ProvinsiController::class,'kecamatan']);
-Route::get('/kelurahan',[ProvinsiController::class,'kelurahan']);
-Route::get('/rw',[ProvinsiController::class,'rw']);
-Route::get('/provinsi',[ProvinsiController::class,'index']);
-Route::post('/provinsi/store',[ProvinsiController::class,'store']);
-Route::get('/provinsi/{id?}',[ProvinsiController::class,'show']);
-Route::put('/provinsi/{id?}',[ProvinsiController::class,'update']);
-Route::delete('/provinsi/{id?}',[ProvinsiController::class,'destroy']);
+Route::get('/prov',[ApiController::class,'index']);
+Route::post('/prov/store',[ProvinsiController::class,'store']);
+Route::get('/prov/{id?}',[ProvinsiController::class,'show']);
+Route::put('/prov/{id?}',[ProvinsiController::class,'update']);
+Route::delete('/prov/{id?}',[ProvinsiController::class,'destroy']);
 
-//Api Crud Api
-Route::get('/api',[ApiController::class,'rw']);
-Route::post('/api/store',[ApiController::class,'store']);
-Route::get('/api/{id?}',[ApiController::class,'show']);
-Route::post('/api/update/{id?}',[ApiController::class,'update']);
-Route::delete('/api/{id?}',[ApiController::class,'destroy']);
+Route::get('/provinsi',[ApiController::class,'provinsi']);
+Route::get('/kota',[ApiController::class,'kota']);
+Route::get('/kecamatan',[ApiController::class,'kecamatan']);
+Route::get('/kelurahan',[ApiController::class,'kelurahan']);
+Route::get('/rw',[ApiController::class,'rw']);
+Route::get('/track',[ApiController::class,'track']);
+Route::get('/indonesia',[ApiController::class,'indonesia']);
+Route::get('/positif',[ApiController::class,'positif']);
+Route::get('/sembuh',[ApiController::class,'sembuh']);
+Route::get('/meninggal',[ApiController::class,'meninggal']);
+
+
+// berdasarkan id
+Route::get('/sprov/{id}',[ApiController::class,'sprov']);

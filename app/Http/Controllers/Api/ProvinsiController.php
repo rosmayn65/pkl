@@ -124,4 +124,4 @@ class ProvinsiController extends Controller
             ], 500);
         }
     }
-    }
+}

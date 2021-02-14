@@ -17,6 +17,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Lokasi</th>
+                                <th>RW</th>
                                 <th>Positif</th>
                                 <th>Sembuh</th>
                                 <th>Meninggal</th>
@@ -26,11 +27,12 @@
                             @php $no=1; @endphp
                             @foreach($tracking as $data)
                             <tr>
-                                <td>{{$no++}}</td>
+                                <th>{{$no++}}</th>
                                 <td>
-                                    RW <b>{{$data->rw->rw}}</b>, {{$data->rw->kelurahan->nama_kel}}<br>
-                                    {{$data->rw->kelurahan->kecamatan->nama_kec}}<br> {{$data->rw->kelurahan->kecamatan->kota->nama_kota}},
-                                    {{$data->rw->kelurahan->kecamatan->kota->provinsi->nama_prov}}
+                                    Provinsi : {{$data->rw->kelurahan->kecamatan->kota->provinsi->nama_provinsi}}<br>
+                                    Kota : {{$data->rw->kelurahan->kecamatan->kota->nama_kota}}<br>
+                                    Kecamatan : {{$data->rw->kelurahan->kecamatan->nama_kecamatan}}<br>
+                                    Kelurahan : {{$data->rw->kelurahan->nama_kelurahan}}
                                 </td>
                                 
                                 <td>{{$data->jml_positif}}</td>
