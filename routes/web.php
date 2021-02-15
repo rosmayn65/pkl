@@ -7,7 +7,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\Frontend;
+use App\Http\Controllers\FrontendController;
 
 
 /*
@@ -24,6 +24,8 @@ use App\Http\Controllers\Frontend;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/index', FrontendController::class);
 
 Auth::routes();
 
