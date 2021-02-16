@@ -1,584 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-        <body id="page-top">
-          <?php
-            $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
-            $positif =json_decode($datapositif, true);
-            $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
-            $sembuh = json_decode($datasembuh, true);
-            $datameninggal = file_get_contents("https://api.kawalcorona.com/meninggal");
-            $meninggal = json_decode($datameninggal, true);
-            $dataid = file_get_contents("https://api.kawalcorona.com/indonesia");
-            $id = json_decode($dataid, true);
-            $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
-            $idprovinsi = json_decode($dataidprovinsi, true);
-            $datadunia = file_get_contents("https://api.kawalcorona.com/");
-            $dunia = json_decode($datadunia, true);
-          ?>
-          
-        <!-- Navigation-->
-          <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-              <a class="navbar-brand js-scroll-trigger" href="#page-top">Kawal Corona</a>
-                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  Menu
-                  <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Data</a></li>
-                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
-                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        <!-- Masthead-->
-          <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-              <!-- Masthead Avatar Image-->
-                <!---<img class="masthead-avatar mb-5" src="assets/img/viruscorona.JPG" alt="" />--->
-                  <!-- Masthead Heading-->
-                  <h1 class="masthead-heading text-uppercase mb-0">Kawal Corona Virus</h1>
-                  <!-- Icon Divider-->
-                  <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                  </div>
-          <!-- Masthead Subheading-->
-              <p class="masthead-subheading font-weight-light mb-0">Perkembangan Virus Corona Di Indonesia</p>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lumia Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{asset('frontend/assets/img/favicon.png ') }}" rel="icon">
+  <link href="{{asset('frontend/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{asset('frontend/assets/vendor/bootstrap/css/bootstrap.min.cs') }}s" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/icofont/icofont.min.css ') }}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/boxicons/css/boxicons.min.css ') }}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/venobox/venobox.css ') }}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/owl.carousel/assets/owl.carousel.min.css ') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <?php
+    $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
+    $positif =json_decode($datapositif, true);
+    $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
+    $sembuh = json_decode($datasembuh, true);
+    $datameninggal = file_get_contents("https://api.kawalcorona.com/meninggal");
+    $meninggal = json_decode($datameninggal, true);
+    $dataid = file_get_contents("https://api.kawalcorona.com/indonesia");
+    $id = json_decode($dataid, true);
+    $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
+    $idprovinsi = json_decode($dataidprovinsi, true);
+    $datadunia = file_get_contents("https://api.kawalcorona.com/");
+    $dunia = json_decode($datadunia, true);
+  ?>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h1><a href="">Kawal Corona</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href=""><img src="{{asset('frontend/assets/img/logo.png ') }}" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#portfolio">Data</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1><span>Corona Virus</span></h1>
+      <h2>Perkembangan Virus Corona Di Indonesia</h2>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-3 col-6">
+            <div class="count-box">
+              <i class="icofont-simple-smile"></i>
+              <span data-toggle="counter-up">232</span>
+              <p>Total Positif</p>
+            </div>
           </div>
-          </header>
-          
-        <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
-            <div class="container">
-              <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Data Kasus Covid-19</h2>
-              <!-- Icon Divider-->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                  <div class="divider-custom-line"></div>
-                </div>
-              <!-- Portfolio Grid Items-->
-                <div class="row">
-                  <!-- Content Row -->
-                    <div class="row">
 
-              <!-- POSITIF -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-primary shadow h-100 py-2">
-                    <div class= "card bg-danger  shadow h-100 py-2">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                              Total Positif
-                            </div>
-                            <p>Positif <?php echo $positif['value']?></p>
-                          </div>
-                          <div class="col-auto">
-                            <img style="width: 75px; height:75px" src="assets/img/sad.PNG"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div class="col-lg-3 col-6">
+            <div class="count-box">
+              <i class="icofont-document-folder"></i>
+              <span data-toggle="counter-up">521</span>
+              <p>Total Sembuh</p>
+            </div>
+          </div>
 
-              <!-- SEMBUH -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-success shadow h-100 py-2">
-                    <div class= "card bg-warning  shadow h-100 py-2">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                              Total Sembuh
-                            </div>
-                            <p>Sembuh <?php echo $sembuh['value']?></p>
-                          </div>
-                          <div class="col-auto">
-                            <img style="width: 75px; height:75px" src="assets/img/happy.PNG"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="icofont-live-support"></i>
+              <span data-toggle="counter-up">1,463</span>
+              <p>Total Meninggal</p>
+            </div>
+          </div>
 
-              <!-- MENINGGAL -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-success shadow h-100 py-2">
-                    <div class= "card bg-info  shadow h-100 py-2">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                              Total Meninggal
-                            </div>
-                            <p>Meninggal <?php echo $meninggal['value']?></p>
-                          </div>
-                          <div class="col-auto">
-                            <img style="width: 75px; height:75px" src="assets/img/cry.PNG"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="icofont-users-alt-5"></i>
+              <span data-toggle="counter-up">15</span>
+              <p>Indonesia</p>
+            </div>
+          </div>
 
-              <!-- Pending Requests Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-warning shadow h-100 py-2">
-                    <div class= "card bg-success  shadow h-100 py-2">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                              Indonesia
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $id[0]['positif']?></div>
-                          </div>
-                          <div class="col-auto">
-                            <img style="width: 75px; height:75px" src="assets/img/indo.PNG"/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Provinsi -->
-
-              <!--- global--->
-                <tr>
-                  <div class="card-header ">
-                    <h3 class="card-title"><th>Data Kasus Corona Virus Global</th></h3>
-                  </div>
-                  <div class="card-body" >
-                    <div style="height:600px;overflow:auto;margin-right:15px;">
-                      <table class="table table-striped"  fixed-header  >
-                      <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Negara</th>
-                        <th scope="col">Positif</th>
-                        <th scope="col">Sembuh</th>
-                        <th scope="col">Meninggal</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        @php
-                          $no = 1;    
-                        @endphp
-                        <?php
-                          for ($i= 0; $i <= 191; $i++){
-                        ?>
-                        <tr>
-                          <td> <?php echo $i+1 ?></td>
-                          <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
-                          <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
-                          <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>
-                          <td><?php echo $dunia[$i]['attributes']['Deaths']?></td>
-                        </tr>
-                        <?php 
-                        } ?>
-                        </tbody>
-                      </table>
-                    </tbody>
-                  </table>                     
-                </div>
-              </div>
-            </tr>
-          </div>         
+      <!--- global--->
+      <tr>
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h2>
         </div>
-      </section>
+        <div class="card-body" >
+          <div style="height:600px;overflow:auto;margin-right:15px;">
+          <table class="table table-striped"  fixed-header  >
+          <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Provinsi</th>
+            <th scope="col">Positif</th>
+            <th scope="col">Sembuh</th>
+            <th scope="col">Meninggal</th>
+          </tr>
+          </thead>
+          <tbody>      
+            @php
+              $no = 1;    
+            @endphp
+            <?php
+              for ($i= 0; $i <= 191; $i++){
+            ?>
+            <tr>
+              <td> <?php echo $i+1 ?></td>
+              <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
+              <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
+              <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>
+              <td><?php echo $dunia[$i]['attributes']['Deaths']?></td>
+            </tr>
+            <?php 
+            } ?>
+            </table>
+            </tbody>
+            </table>
+          </tbody>                     
+        </div>
+      </div>
+    </tr>
 
-        <!-- About Section-->
-          <section class="page-section bg-primary text-white mb-0" id="about">
-            <div class="container">
-              <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
-              <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                  <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                      <div class="divider-custom-line"></div>
+      <!--- global--->
+      <tr>
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Data Kasus Corona Virus Global</h2>
+        </div>
+        <div class="card-body" >
+          <div style="height:600px;overflow:auto;margin-right:15px;">
+          <table class="table table-striped"  fixed-header  >
+          <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Negara</th>
+            <th scope="col">Positif</th>
+            <th scope="col">Sembuh</th>
+            <th scope="col">Meninggal</th>
+          </tr>
+          </thead>
+          <tbody>      
+            @php
+              $no = 1;    
+            @endphp
+            <?php
+              for ($i= 0; $i <= 191; $i++){
+            ?>
+            <tr>
+              <td> <?php echo $i+1 ?></td>
+              <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
+              <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
+              <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>
+              <td><?php echo $dunia[$i]['attributes']['Deaths']?></td>
+            </tr>
+            <?php 
+            } ?>
+            </table>
+          </tbody>                     
+        </div>
+      </div>
+    </tr>
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+      <div class="section-title">
+        <h2>About</h2>
+      </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="{{asset('frontend/assets/img/covid.jpg ') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <h3>Apa Itu Virus Corona?</h3>
+            <p>
+            Infeksi coronavirus merupakan penyakit yang disebabkan oleh virus corona dan menimbulkan gejala utama berupa gangguan pernapasan. Penyakit ini menjadi sorotan karena kemunculannya di akhir tahun 2019 pertama kali di Wuhan, China. Lokasi kemunculannya pertama kali ini, membuat coronavirus juga dikenal dengan sebutan Wuhan virus.
+            Selain China, coronavirus juga menyebar secara cepat ke berbagai negara lain, termasuk Jepang, Thailand, Jepang, Korea Selatan, bahkan hingga ke Amerika Serikat.
+            </p>
+            <p>Cara pencegahan agar tidak tertular virus corona :</p>
+            <ul>
+              <li><i class="bx bx-check-double"></i> Kenakan masker jika pembatasan fisik tidak dimungkinkan.</li>
+              <li><i class="bx bx-check-double"></i> Cuci tangan Anda secara rutin. Gunakan sabun dan air, atau cairan pembersih tangan berbahan alkohol.</li>
+              <li><i class="bx bx-check-double"></i> Jika demam, batuk, atau kesulitan bernapas, segera cari bantuan medis.</li>
+              <li><i class="bx bx-check-double"></i> Jaga jarak aman hindari kerumunan banyak orang.</li>
+              <li><i class="bx bx-check-double"></i> Jangan sentuh mata, hidung, atau mulut Anda.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Services</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="icon-box">
+              <h4>Novel coronavirus (COVID-19): Hal-hal yang perlu anda ketahui</h4>
+              <p>Unicef Indonesia</p>
+            </div>
+          </div>
+          <div class="col-md-6 mt-4 mt-lg-0">
+            <div class="icon-box">
+              <h4>Daftar 100 rumah sakit rujukan penanganan virus corona</h4>
+              <p>Kompas</p>
+            </div>
+          </div>
+          <div class="col-md-6 mt-4">
+            <div class="icon-box">
+              <h4>Media informasi resmi penyakit infeksi emerging</h4>
+              <p>Kementrian kesehatan</p>
+            </div>
+          </div>
+          <div class="col-md-6 mt-4">
+            <div class="icon-box">
+              <h4>Coronavirus disiase (COVID-19) advice for the public</h4>
+              <p>WHO</p>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+
+          <div class="col-lg-10">
+
+            <div class="info-wrap">
+              <div class="row">
+                <div class="col-lg-4 info">
+                  <i class="icofont-google-map"></i>
+                  <h4>Location:</h4>
+                  <p>Komplek Bojong Malaka Indah<br>Kec.Baleendah</p>
                 </div>
-              <!-- About Section Content-->
-                <div class="col-md-6 col-lg-8 pl-lg-5 py-5">
-                  <div class="row justify-content-start pb-3">
-                    <div class="col-md-12 heading-section ftco-animate">
-                      <h1 class="mb-4">Apa Itu Virus Corona?</h1>
-                      <h4><p>Coronavirus merupakan keluarga besar virus yang menyebabkan penyakit pada manusia dan hewan. Pada manusia biasanya menyebabkan penyakit infeksi saluran pernapasan, mulai flu biasa hingga penyakit yang serius seperti Middle East Respiratory Syndrome (MERS) dan Sindrom Pernafasan Akut Berat/ Severe Acute Respiratory Syndrome (SARS). Coronavirus jenis baru yang ditemukan pada manusia sejak kejadian luar biasa muncul di Wuhan Cina, pada Desember 2019, kemudian diberi nama Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-COV2), dan menyebabkan penyakit Coronavirus Disease-2019 (COVID-19).</p></h4>
-                    </div>
-                  </div>
-                  <span class="subheading">Cara Menghindar Dari Virus Corona :</span>
-                    <div class="row">
-                      <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                        <div class="block-18 text-center p-4 mb-4 align-self-stretch d-flex">
-                          <div class="text">
-                            <span>Menjaga Kesehatan dan Kebugaran Tubuh</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                      <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                        <div class="text">
-                          <span>Gunakan Masker</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                      <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                        <div class="text">
-                          <span>Our Architect</span>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                    <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                      <div class="text">
-                        <span>Happy Customers</span>
-                      </div>
-                    </div>
-                  </div>
+
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="icofont-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>rosmayanie65@gmail.com</p>
+                </div>
+
+                <div class="col-lg-4 info mt-4 mt-lg-0">
+                  <i class="icofont-phone"></i>
+                  <h4>Call:</h4>
+                  <p>+62 899-0147-1860<br>+62 857-2224-8698</p>
                 </div>
               </div>
             </div>
-          </section>
 
-          <!-- Contact Section-->
-            <section class="page-section" id="contact">
-              <div class="container">
-                <!-- Contact Section Heading-->
-                  <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact</h2>
-                    <!-- Icon Divider-->
-                      <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
-                      </div>
-                    <!-- Contact Section Form-->
-                    <div class="row">
-                      <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                          <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                            <div class="control-group">
-                              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Name</label>
-                                  <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name." />
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                            </div>
+          </div>
 
-                            <div class="control-group">
-                              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Email Address</label>
-                                  <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." />
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                            </div>
+        </div>
 
-                            <div class="control-group">
-                              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Phone Number</label>
-                                  <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number." />
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                            </div>
-
-                            <div class="control-group">
-                              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Message</label>
-                                  <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                            </div>
-                          <br />
-                          <div id="success"></div>
-                          <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button></div>
-                    </form>
-                  </div>
+        <div class="row mt-5 justify-content-center">
+          <div class="col-lg-10">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Masukkan Nama" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
               </div>
-            </div>
-          </section>
-            <!-- Footer-->
-            <footer class="footer text-center">
-                <div class="container">
-                    <div class="row">
-                        <!-- Footer Location-->
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <h4 class="text-uppercase mb-4">Location</h4>
-                            <p class="lead mb-0">
-                                2215 John Daniel Drive
-                                <br />
-                                Clark, MO 65243
-                            </p>
-                        </div>
-                        <!-- Footer Social Icons-->
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <h4 class="text-uppercase mb-4">Around the Web</h4>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                        </div>
-                        <!-- Footer About Text-->
-                        <div class="col-lg-4">
-                            <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                            <p class="lead mb-0">
-                                Freelance is a free to use, MIT licensed Bootstrap theme created by
-                                <a href="http://startbootstrap.com">Start Bootstrap</a>
-                                .
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- Copyright Section-->
-            <div class="copyright py-4 text-center text-white">
-                <div class="container"><small>Copyright © Your Website 2020</small></div>
-            </div>
-            <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-            <div class="scroll-to-top d-lg-none position-fixed">
-                <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
-            </div>
-            <!-- Portfolio Modals-->
-            <!-- Portfolio Modal 1-->
-            <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">Log Cabin</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Modal 2-->
-            <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal2Label">Tasty Cake</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Modal 3-->
-            <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-labelledby="portfolioModal3Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal3Label">Circus Tent</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Modal 4-->
-            <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-labelledby="portfolioModal4Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal4Label">Controller</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Modal 5-->
-            <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-labelledby="portfolioModal5Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal5Label">Locked Safe</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Modal 6-->
-            <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-labelledby="portfolioModal6Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        <div class="modal-body text-center">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <!-- Portfolio Modal - Title-->
-                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal6Label">Submarine</h2>
-                                        <!-- Icon Divider-->
-                                        <div class="divider-custom">
-                                            <div class="divider-custom-line"></div>
-                                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                            <div class="divider-custom-line"></div>
-                                        </div>
-                                        <!-- Portfolio Modal - Image-->
-                                        <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="" />
-                                        <!-- Portfolio Modal - Text-->
-                                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                        <button class="btn btn-primary" data-dismiss="modal">
-                                            <i class="fas fa-times fa-fw"></i>
-                                            Close Window
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="{{asset('assets/mail/jqBootstrapValidation.js')}}"></script>
-        <script src="{{asset('assets/mail/contact_me.js')}}"></script>
-        <!-- Core theme JS-->
-        <script src="{{asset('js/scripts.js')}}"></script>
-    </body>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Pesan" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Komentar"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Kirim Pesan</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+    <div class="container d-md-flex py-4">
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Rosmayani</span></strong>. All Rights Reserved
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{asset('frontend/assets/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/waypoints/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/counterup/counterup.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{asset('frontend/assets/js/main.js')}}"></script>
+
+</body>
+
 </html>
