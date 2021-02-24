@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Data tracking
+                    Data Tracking
                 </div>
                 <div class="card-body">
                     <form action="{{route('tracking.update',$tracking->id)}}" method="post">
@@ -16,36 +16,42 @@
                                 @livewire('dropdowns',['selectedRw'=>$tracking->id_rw,'selectedKelurahan'=>$tracking->rw->id_kel,
                                             'selectedKecamatan'=>$tracking->rw->kelurahan->id_kec,
                                             'selectedKota'=>$tracking->rw->kelurahan->kecamatan->id_kota,
-                                            'selectedProvinsi'=>$tracking->rw->kelurahan->kecamatan->kota->id_prov])
+                                            'selectedProvinsi'=>$tracking->rw->kelurahan->kecamatan->kota->id_provinsi])
                             </div>
                             <div class="col">
                                 
                                 <div class="form-group">
-                                    <label for="">Jumlah Positif</label>
+                                    <label for="">Positif</label>
                                     <input type="text" name="jml_positif" class="form-control" value="{{$tracking->jml_positif}}" required>
-                                    @error('positif')
-                                       <div class="badge badge-danger">{{ $message }}</div>
-                                    @enderror
+                                    @if($errors->has('jml_positif'))
+                                <span class="text-danger">{{$errors->first('jml_positif')}}</span>
+                            @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Jumlah Sembuh</label>
+                                    <label for="">Sembuh</label>
                                     <input type="text" name="jml_sembuh" class="form-control" value="{{$tracking->jml_sembuh}}" required>
-                                    
+                                    @if($errors->has('jml_sembuh'))
+                                <span class="text-danger">{{$errors->first('jml_sembuh')}}</span>
+                            @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Jumlah Meninggal</label>
+                                    <label for="">Meninggal</label>
                                     <input type="text" name="jml_meninggal" class="form-control" value="{{$tracking->jml_meninggal}}" required>
-                                   
+                                    @if($errors->has('jml_meninggal'))
+                                <span class="text-danger">{{$errors->first('jml_meninggal')}}</span>
+                            @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="">Tanggal</label>
                                     <input type="date" name="tanggal" class="form-control" value="{{$tracking->tanggal}}" required>
-                                   
+                                    @if($errors->has('tanggal'))
+                                <span class="text-danger">{{$errors->first('tanggal')}}</span>
+                            @endif
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -51,15 +51,7 @@ class ProvinsiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'kode_prov' => 'required|unique:provinsis',
-            'nama_prov' => 'required|unique:provinsis',
-        ], [
-            'kode_prov.required' => 'Kode provinsi harus diisi',
-            'kode_prov.unique' => 'Kode provinsi telah terdaftar',
-            'nama_prov.required' => 'Provinsi harus diisi',
-            'nama_prov.unique' => 'Provinsi telah terdaftar'
-        ]);
+       
 
         $provinsi = Provinsi::findOrfail($id);
         $provinsi->kode_prov = $request->kode_prov;
@@ -69,10 +61,9 @@ class ProvinsiController extends Controller
             ->with(['message'=>'Data provinsi berhasil diedit!']);
     }
 
-    public function destroy(Provinsi $provinsi)
+    public function destroy($id)
     {
         $provinsi = Provinsi::findOrFail($id)->delete();
-        return redirect()->route('provinsi.index')
-                ->with(['message'=>'Provinsi berhasil dihapus']);
+        return redirect()->route('provinsi.index')->with(['message'=>'Data provinsi berhasil dihapus']);
     }
 }

@@ -14,10 +14,10 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="">Nama Kelurahan</label>
-                            <select name="id_kel" class="form-control">
+                            <select name="nama_kel" class="form-control">
                             @foreach($kelurahan as $data)
                             <option value="{{$data->id}}"
-                            {{$data->id == $rw->id_kelurahan ? "selected": ""}}>{{$data->id_kel}}</option>
+                            {{$data->id == $rw->id_kelurahan ? "selected": ""}}>{{$data->nama_kel}}</option>
                             @endforeach
                             </select>
                         </div>

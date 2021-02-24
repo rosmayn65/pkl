@@ -17,7 +17,6 @@
 
         <div class="form-group row ">
             <div class="col-md-6">
-    
             <label for="Kota">Kota</label>
                 <select wire:model="selectedKota" class="form-control">
                     <option value="" selected>Pilih Kota</option>
@@ -25,11 +24,11 @@
                         <option value="{{ $kotas->id }}">{{ $kotas->nama_kota }}</option>
                     @endforeach
                 </select>
-   
             </div>
+            
             <div class="col-md-6">
                 <label for="sembuh">Jumlah Sembuh</label>
-                <input type="text" class="form-control" value="@if(isset($tracking)){{$tracking->jml_sembuh}}@endif"  name="sembuh" required>
+                <input type="text" class="form-control" value="@if(isset($tracking)){{$tracking->jml_sembuh}}@endif"  name="jml_sembuh" required>
             </div>
         </div>
         <div class="form-group row ">
@@ -46,7 +45,7 @@
             </div>
             <div class="col-md-6">
                 <label for="meninggal">Jumlah Meninggal</label>
-                <input type="text" class="form-control" value="@if(isset($tracking)){{$tracking->jml_meninggal}}@endif" name="meninggal" required>
+                <input type="text" class="form-control" value="@if(isset($tracking)){{$tracking->jml_meninggal}}@endif" name="jml_meninggal" required>
             </div>
         </div>
         <div class="form-group row ">

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Lumia Bootstrap Template - Index</title>
+  <title>Frontend</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,38 +28,37 @@
 </head>
 
 <body id="page-top">
-  <?php
-    $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
-    $positif =json_decode($datapositif, true);
-    $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
-    $sembuh = json_decode($datasembuh, true);
-    $datameninggal = file_get_contents("https://api.kawalcorona.com/meninggal");
-    $meninggal = json_decode($datameninggal, true);
-    $dataid = file_get_contents("https://api.kawalcorona.com/indonesia");
-    $id = json_decode($dataid, true);
-    $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
-    $idprovinsi = json_decode($dataidprovinsi, true);
-    $datadunia = file_get_contents("https://api.kawalcorona.com/");
-    $dunia = json_decode($datadunia, true);
-  ?>
+<?php
+  $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
+  $positif =json_decode($datapositif, true);
+  $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
+  $sembuh = json_decode($datasembuh, true);
+  $datameninggal = file_get_contents("https://api.kawalcorona.com/meninggal");
+  $meninggal = json_decode($datameninggal, true);
+  $dataid = file_get_contents("https://api.kawalcorona.com/indonesia");
+  $id = json_decode($dataid, true);
+  $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
+  $idprovinsi = json_decode($dataidprovinsi, true);
+  $datadunia = file_get_contents("https://api.kawalcorona.com/");
+  $dunia = json_decode($datadunia, true);
+?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1><a href="">Kawal Corona</a></h1>
+        <h2>Kawal Corona</h2>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href=""><img src="{{asset('frontend/assets/img/logo.png ') }}" alt="" class="img-fluid"></a>-->
+        <!-- <a href="index.html"><img src="{{asset('frontend/assets/img/logo.png ') }}" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#portfolio">Data</a></li>
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#portfolio">Data Kasus</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#contact">Contact</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -69,135 +68,131 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
-      <h1><span>Corona Virus</span></h1>
+      <h1>Welcome to <span>Tracking Covid</span></h1>
       <h2>Perkembangan Virus Corona Di Indonesia</h2>
-    </div>
   </section><!-- End Hero -->
 
   <main id="main">
 
-    <!-- ======= Portfolio Section ======= -->
+    <!-- ======= Counts Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container">
     <section id="counts" class="counts">
       <div class="container">
+
+      <div class="section-title">
+        <h2>Data Kasus Covid-19</h2>
+      </div>
 
         <div class="row">
 
           <div class="col-lg-3 col-6">
             <div class="count-box">
-              <i class="icofont-simple-smile"></i>
-              <span data-toggle="counter-up">232</span>
+              <i class="icofont-plus"></i> <br>
+              <span data-toggle="counter-up"><?php echo $positif['value']?></span>
               <p>Total Positif</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-6">
             <div class="count-box">
-              <i class="icofont-document-folder"></i>
-              <span data-toggle="counter-up">521</span>
+              <i class="icofont-heart-beat-alt"></i> <br>
+              <span data-toggle="counter-up"><?php echo $sembuh['value']?></span>
               <p>Total Sembuh</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="icofont-live-support"></i>
-              <span data-toggle="counter-up">1,463</span>
+              <i class="icofont-skull-danger"></i> <br>
+              <span data-toggle="counter-up"><?php echo $meninggal['value']?></span>
               <p>Total Meninggal</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="icofont-users-alt-5"></i>
-              <span data-toggle="counter-up">15</span>
-              <p>Indonesia</p>
+              <i class="icofont-globe"></i> <br>
+              <span data-toggle="counter-up"><?php echo $id[0]['positif']?></span>
+              <p>Kasus Data Global</p>
             </div>
           </div>
 
-      <!--- global--->
-      <tr>
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h2>
-        </div>
-        <div class="card-body" >
-          <div style="height:600px;overflow:auto;margin-right:15px;">
-          <table class="table table-striped"  fixed-header  >
-          <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Provinsi</th>
-            <th scope="col">Positif</th>
-            <th scope="col">Sembuh</th>
-            <th scope="col">Meninggal</th>
-          </tr>
-          </thead>
-          <tbody>      
-            @php
-              $no = 1;    
-            @endphp
-            <?php
-              for ($i= 0; $i <= 191; $i++){
-            ?>
-            <tr>
-              <td> <?php echo $i+1 ?></td>
-              <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
-              <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
-              <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>
-              <td><?php echo $dunia[$i]['attributes']['Deaths']?></td>
-            </tr>
-            <?php 
-            } ?>
-            </table>
-            </tbody>
-            </table>
-          </tbody>                     
-        </div>
+        </div><br><br>
       </div>
-    </tr>
-
-      <!--- global--->
-      <tr>
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Data Kasus Corona Virus Global</h2>
-        </div>
-        <div class="card-body" >
-          <div style="height:600px;overflow:auto;margin-right:15px;">
-          <table class="table table-striped"  fixed-header  >
-          <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Negara</th>
-            <th scope="col">Positif</th>
-            <th scope="col">Sembuh</th>
-            <th scope="col">Meninggal</th>
-          </tr>
-          </thead>
-          <tbody>      
-            @php
-              $no = 1;    
-            @endphp
-            <?php
-              for ($i= 0; $i <= 191; $i++){
-            ?>
-            <tr>
-              <td> <?php echo $i+1 ?></td>
-              <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
-              <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
-              <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>
-              <td><?php echo $dunia[$i]['attributes']['Deaths']?></td>
-            </tr>
-            <?php 
-            } ?>
-            </table>
-          </tbody>                     
-        </div>
-      </div>
-    </tr>
-        </div>
-      </div>
+    </section><!-- End Counts Section -->
     </section><!-- End Portfolio Section -->
+
+    <!-- ======== Table Section Provinsi ======= -->
+    <div class="card">
+      <div class="card-header ">
+        <h3 class="card-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive service">
+          <table class="table table-bordered table-hover mb-0 text-nowrap css-serial">
+            <thead>
+              <tr>
+                <th class="atasbro">NO.</th>
+                <th class="atasbro">Provinsi</th>
+                <th class="atasbro">Positif</th>
+                <th class="atasbro">Sembuh</th>
+                <th class="atasbro">Meninggal</th>
+              </tr>
+            </thead>
+					</table>
+				</div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+    <!-- ======== End Table Section Provinsi ======= -->
+
+    <!-- ======== Table Section Global ======= -->
+    <section id="global" class="global">
+      <div class="container">
+
+        <div class="card">
+          <div class="card-header ">
+            <h3 class="card-title">Kasus Coronavirus Global</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive service">
+              <table class="table table-bordered table-hover mb-0 text-nowrap css-serial">
+                <thead>
+                  <tr>
+                    <th class="atasbro">NO.</th>
+                    <th class="atasbro">Negara</th>
+                    <th class="atasbro">Positif</th>
+                    <th class="atasbro">Sembuh</th>
+                    <th class="atasbro">Meninggal</th>
+                  </tr>
+                </thead>
+
+              <tbody>
+              @php
+                $no = 1;
+              @endphp
+
+                @foreach($dunia as $data)
+                    <tr>
+                      <td> <?php echo $no++ ?></td>
+                      <td> <?php echo $data['attributes']['Country_Region'] ?></td>
+                      <td> <?php echo number_format($data['attributes']['Confirmed']) ?></td>
+                      <td><?php echo number_format($data['attributes']['Recovered'])?></td>
+                      <td><?php echo number_format($data['attributes']['Deaths'])?></td>
+                    </tr>
+                  @endforeach
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </section>
+    <!-- ======== End Table Section Global ======= -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -230,45 +225,7 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="icon-box">
-              <h4>Novel coronavirus (COVID-19): Hal-hal yang perlu anda ketahui</h4>
-              <p>Unicef Indonesia</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <h4>Daftar 100 rumah sakit rujukan penanganan virus corona</h4>
-              <p>Kompas</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <h4>Media informasi resmi penyakit infeksi emerging</h4>
-              <p>Kementrian kesehatan</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <h4>Coronavirus disiase (COVID-19) advice for the public</h4>
-              <p>WHO</p>
-            </div>
-          </div>
-          
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
+    <!-- ======= Contact Section ======= -->
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
       <div class="container">
@@ -306,61 +263,9 @@
           </div>
 
         </div>
-
-        <div class="row mt-5 justify-content-center">
-          <div class="col-lg-10">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Masukkan Nama" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Pesan" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Komentar"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Kirim Pesan</button></div>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
+        
+        <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
     </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-    <div class="container d-md-flex py-4">
-      <div class="mr-md-auto text-center text-md-left">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Rosmayani</span></strong>. All Rights Reserved
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="{{asset('frontend/assets/vendor/jquery/jquery.min.js')}}"></script>

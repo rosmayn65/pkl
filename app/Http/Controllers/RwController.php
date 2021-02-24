@@ -29,28 +29,30 @@ class RwController extends Controller
         //
         $request->validate(
             [
-                'rw' => 'required|unique:rws'
+                'id_rw' => 'required|max:5|unique:rws',
+                'rw' => 'required|unique:rws',
             ],
             [
-                'rw.required' => 'No Rw harus diisi',
-                'rw.unique' => 'Rw telah terdaftar'
-            ]
-            );
+                'id_rw.required' => 'Id Harus Diisi',
+                'id_rw.unique' => 'Id Maksimal 5 Nomor',
+                'id_rw.unique' => 'Id Sudah Dipakai',
+                'rw.required' =>' nama rw Harus Diisi',
+                'rw.unique' => 'Kode Sudah Dipakai',
+            ]);
 
         $rw = new Rw();
+        $rw->nama_kel = $request->nama_kel;
         $rw->id_rw = $request->id_rw;
         $rw->rw = $request->rw;
-        $rw->id_kel = $request->id_kel;
         $rw->save();
         return redirect()->route('rw.index')
-                ->with(['message'=>'Data rw berhasil dibuat']);
+                ->with(['message'=>'Data berhasil dibuat']);
     }
 
     public function show($id)
     {
-        $kelurahan = Kelurahan::all();
         $rw = Rw::findOrFail($id);
-        return view('admin.rw.show',compact('rw','kelurahan'));
+        return view('admin.rw.show',compact('rw'));
     }
 
     public function edit($id)
@@ -64,17 +66,18 @@ class RwController extends Controller
     public function update(Request $request, $id)
     {
         $rw = Rw::findOrFail($id);
+        $rw->nama_kel = $request->nama_kel;
+        $rw->id_rw = $request->id_rw;
         $rw->rw = $request->rw;
-        $rw->id_kel = $request->id_kel;
         $rw->save();
         return redirect()->route('rw.index')
-                ->with(['message'=>'Data rw berhasil diedit']);
+                ->with(['message'=>'Data berhasil diedit']);
     }
 
     public function destroy($id)
     {
         $rw = Rw::findOrFail($id)->delete();
         return redirect()->route('rw.index')
-                ->with(['message'=>'Data rw berhasil dihapus']);
+                ->with(['message'=>'Data berhasil dihapus']);
     }
 }

@@ -17,9 +17,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Nama Kelurahan</th>
                                     <th>Id Rw</th>
                                     <th>Rw</th>
-                                    <th>Nama Kelurahan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -28,9 +28,9 @@
                                 @foreach($rw as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
+                                    <td>{{$data->kelurahan->nama_kel}}</td>
                                     <td>{{$data->id_rw}}</td>
                                     <td>{{$data->rw}}</td>
-                                    <td>{{$data->kelurahan->nama_kel}}</td>
                                     <td>
                                         <form action="{{route('rw.destroy',$data->id)}}" method="post">
                                         @csrf
