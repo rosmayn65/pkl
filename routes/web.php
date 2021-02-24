@@ -22,7 +22,8 @@ use App\Http\Controllers\FrontendController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
+    
 });
 
 Route::resource('/index', FrontendController::class);
@@ -70,6 +71,3 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
 });
 
 //Route Frontend
-Route::get('frontend/index',function(){
-    return view('frontend.index');
-});
