@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Tracking;
-use App\Models\Rw;
 use App\Http\Controllers\DB;
+use App\Models\Kota;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\Rw;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 
 class TrackingController extends Controller
@@ -12,18 +14,30 @@ class TrackingController extends Controller
     public function index()
     {
        $tracking = Tracking::with('rw.kelurahan.kecamatan.kota.provinsi')->get();
+       //dd($tracking);
        return view('admin.tracking.index',compact('tracking'));
     }
 
     public function create()
     {
-        return view('admin.tracking.create');
+        $rw = Rw::all();
+        return view('admin.tracking.create',compact('rw'));
     }
 
     public function store(Request $request)
     {
-        
-        $tracking = new Tracking;
+        $request->validate([
+            'jml_positif' => 'required:trackings',
+            'jml_sembuh' => 'required:trackings',
+            'jml_meninggal' => 'required:trackings',
+            'tanggal' => 'required:trackings'
+        ], [
+            'jml_positif.required' => 'Jumlah pasien sembuh harus diisi',
+            'jml_sembuh.required' => 'Jumlah pasien sembuhharus diisi',
+            'jml_meninggal.required' => 'Jumlah pasien meninggal harus diisi',
+            'tanggal.required' => 'Tanggal harus diisi',
+        ]);
+        $tracking = new Tracking();
         $tracking->id_rw = $request->id_rw;
         $tracking->jml_positif = $request->jml_positif;
         $tracking->jml_sembuh = $request->jml_sembuh;
@@ -42,6 +56,7 @@ class TrackingController extends Controller
 
     public function edit($id)
     {
+        #rw = Rw::all();
         $tracking = Tracking::findOrFail($id);
         return view('admin.tracking.edit',compact('tracking'));
     }
@@ -49,17 +64,6 @@ class TrackingController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'jml_positif' => 'required:tracking',
-            'jml_sembuh' => 'required:tracking',
-            'jml_meninggal' => 'required:tracking',
-            'tanggal' => 'required:tracking'
-        ],[
-            'jml_positif.required'=> 'Data Harus diisi',
-            'jml_sembuh.required'=> 'Data Harus diisi',
-            'jml_meninggal.required'=> 'Data Harus diisi',
-            'tanggal.required'=> 'Tanggal Harus diisi',
-        ]);
 
         $tracking = Tracking::findOrFail($id);
         $tracking->id_rw = $request->id_rw;

@@ -42,8 +42,7 @@ class KelurahanController extends Controller
         $kelurahan->nama_kel = $request->nama_kel;
         $kelurahan->id_kec = $request->id_kec;
         $kelurahan->save();
-        return redirect()->route('kelurahan.index')
-                ->with(['message'=>'Data kelurahan berhasil dibuat']);
+        return redirect()->route('kelurahan.index');
     }
 
     public function show($id)
@@ -77,14 +76,12 @@ class KelurahanController extends Controller
         $kelurahan->nama_kel = $request->nama_kel;
         $kelurahan->id_kec = $request->id_kec;
         $kelurahan->save();
-        return redirect()->route('kelurahan.index')
-                ->with(['message'=>'Data kelurahan berhasil diedit']);
+        return redirect()->route('kelurahan.index');
     }
 
     public function destroy($id)
     {
         $kelurahan = Kelurahan::findOrFail($id)->delete();
-        return redirect()->route('kelurahan.index')
-                ->with(['message'=>'Data kelurahan berhasil dihapus']);
+        return redirect()->route('kelurahan.index');
     }
 }

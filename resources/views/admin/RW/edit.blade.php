@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Data Rw
+                    Edit Data Rw
                 </div>
                 <div class="card-body">
                     <form action="{{route('rw.update',$rw->id)}}" method="post">
@@ -22,14 +22,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="">Id Rw</label>
+                            <input type="text" name="id_rw" class="form-control" value="{{$rw->id_rw}}" required>  
+                        </div>
+                        <div class="form-group">
                             <label for="">Rw</label>
                             <input type="text" name="rw" class="form-control" value="{{$rw->rw}}" required>  
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary btn-lg btn-block" onclick="return confirm('Apakah anda yakin?')">Simpan</button>
-                        </div>
-                        <div class="form-group">
-                            <a href="{{url()->previous()}}" class="btn btn-outline-secondary btn-lg btn-block">Kembali</a>
                         </div>
                     </form>
                 </div>

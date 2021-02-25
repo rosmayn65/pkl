@@ -26,13 +26,25 @@ class KecamatanController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'id_kota' => 'required|unique:kecamatans',
+                'kode_kec' => 'required|max:5|unique:kecamatans',
+                'nama_kec' => 'required|unique:kecamatans',
+            ],
+            [
+                'kode_kec.required' => 'Kode Harus Diisi',
+                'kode_kec.unique' => 'Kode Maksimal 5 Nomor',
+                'kode_kec.unique' => 'Kode Sudah Dipakai',
+                'nama_kec.required' =>' Nama kecamatan Harus Diisi',
+                'nama_kec.unique' => 'Kode Sudah Dipakai',
+            ]);
         $kecamatan = new Kecamatan();
         $kecamatan->id_kota = $request->id_kota;
         $kecamatan->kode_kec = $request->kode_kec;
         $kecamatan->nama_kec = $request->nama_kec;
         $kecamatan->save();
-        return redirect()->route('kecamatan.index')
-                ->with(['message'=>'Data kecamatan berhasil dibuat']);
+        return redirect()->route('kecamatan.index');
     }
 
     public function show($id)
@@ -57,14 +69,12 @@ class KecamatanController extends Controller
         $kecamatan->nama_kec = $request->nama_kec;
         $kecamatan->id_kota = $request->id_kota;
         $kecamatan->save();
-        return redirect()->route('kecamatan.index')
-                ->with(['message'=>'Data kecamatan berhasil diedit']);
+        return redirect()->route('kecamatan.index');
     }
 
     public function destroy($id)
     {
         $kecamatan = Kecamatan::findOrFail($id)->delete();
-        return redirect()->route('kecamatan.index')
-                ->with(['message'=>'Data kecamatan berhasil dihapus']);
+        return redirect()->route('kecamatan.index');
     }
 }

@@ -24,7 +24,7 @@ class Dropdowns extends Component
     public $selectedKelurahan = null;
     public $selectedRw = null;
 
-    public function mount($selectedRw = null)
+    public function mount($selectedRw = null, $track_id = null)
     {
         $this->provinsi = Provinsi::all();
         $this->kota = collect();
@@ -35,7 +35,6 @@ class Dropdowns extends Component
     
         if (!is_null($selectedRw)) {
             $rw = Rw::with('kelurahan.kecamatan.kota.provinsi')->find($selectedRw);
-            
             if ($rw) {
                 $this->rws = RW::where('nama_kel', $rw->nama_kel)->get();
                 $this->kelurahans = Kelurahan::where('id_kec', $rw->kelurahan->id_kec)->get();

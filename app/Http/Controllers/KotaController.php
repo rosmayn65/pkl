@@ -42,8 +42,7 @@ class KotaController extends Controller
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
-        return redirect()->route('kota.index')
-            ->with(['message'=>'Data kota / kabupaten berhasil dibuat']);
+        return redirect()->route('kota.index');
     }
 
     public function show($id)
@@ -54,7 +53,7 @@ class KotaController extends Controller
 
     public function edit($id)
     {
-        $kota = Kota::findOrFail('id', $id)->with('provinsi')->first();
+        $kota = Kota::findOrFail($id)->with('provinsi')->first();
         $provinsi = Provinsi::all();
         return view('admin.kota.edit', compact('kota','provinsi'));
     }
@@ -75,14 +74,12 @@ class KotaController extends Controller
         $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
         $kota->save();
-        return redirect()->route('kota.index')
-            ->with(['message'=>'Data kota / kabupaten berhasil di edit']);
+        return redirect()->route('kota.index');
     }
 
     public function destroy($id)
     {
         $kota = Kota::findOrFail($id)->delete();
-        return redirect()->route('kota.index')
-            ->with(['message'=>'Data kota / kabupaten berhasil dihapus']);
+        return redirect()->route('kota.index');
     }
 }

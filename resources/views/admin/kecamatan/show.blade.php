@@ -1,11 +1,12 @@
 @extends('layouts.master')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Data kecamatan
+                    Data Kecamatan
                 </div>
                 <div class="card-body">
                         <div class="form-group">

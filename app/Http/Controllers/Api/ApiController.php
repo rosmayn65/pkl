@@ -35,12 +35,12 @@ class ApiController extends Controller
     {
         $provinsi = DB::table('trackings')
                 ->select(DB::raw('provinsis.nama_prov'), 
-                DB::raw('provinsis.kode_provinsi'), 
+                DB::raw('provinsis.kode_prov'), 
                 DB::raw('SUM(jml_positif) as jml_positif'), 
                 DB::raw('SUM(jml_sembuh) as jml_sembuh'), 
                 DB::raw('SUM(jml_meninggal) as jml_meninggal'))
     			->join('rws', 'rws.id', '=', 'trackings.id_rw')
-    			->join('kelurahans', 'kelurahans.id', '=', 'rws.id_kel')
+    			->join('kelurahans', 'kelurahans.id', '=', 'rws.nama_kel')
     			->join('kecamatans', 'kecamatans.id', '=', 'kelurahans.id_kec')
     			->join('kotas', 'kotas.id', '=', 'kecamatans.id_kota')
     			->join('provinsis', 'provinsis.id', '=', 'kotas.id_provinsi')
@@ -48,15 +48,15 @@ class ApiController extends Controller
                 ->get();
         $harini = DB::table('trackings')
                 ->select(DB::raw('provinsis.nama_prov'), 
-                DB::raw('provinsis.kode_provinsi'), 
+                DB::raw('provinsis.kode_prov'), 
                 DB::raw('SUM(jml_positif) as jml_positif'), 
                 DB::raw('SUM(jml_sembuh) as jml_sembuh'), 
                 DB::raw('SUM(jml_meninggal) as jml_meninggal'))
     			->join('rws', 'rws.id', '=', 'trackings.id_rw')
-    			->join('kelurahans', 'kelurahans.id', '=', 'rws.id_kel')
+    			->join('kelurahans', 'kelurahans.id', '=', 'rws.nama_kel')
     			->join('kecamatans', 'kecamatans.id', '=', 'kelurahans.id_kec')
     			->join('kotas', 'kotas.id', '=', 'kecamatans.id_kota')
-    			->join('provinsis', 'provinsis.id', '=', 'kotas.id_prov')
+    			->join('provinsis', 'provinsis.id', '=', 'kotas.id_provinsi')
                 ->wheredate('trackings.tanggal', date('Y-m-d'))
                 ->get();
         $response = [
