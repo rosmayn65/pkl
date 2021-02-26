@@ -15,7 +15,7 @@ class KotaController extends Controller
     }
     public function index()
     {
-        $kota = kota::with('provinsi')->get();
+        $kota = Kota::with('provinsi')->get();
         return view('admin.kota.index', compact('kota'));
     }
 
