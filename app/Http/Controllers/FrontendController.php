@@ -20,7 +20,7 @@ class FrontendController extends Controller
     $positif = DB::table('trackings')
        ->('jml_positif'); 
    $sembuh = DB::table('trackings')
-       ->('tjml_sembuh');
+       ->('jml_sembuh');
    $meninggal = DB::table('trackings')
        ->('jml_meninggal');
    $global = file_get_contents('https://api.kawalcorona.com/positif');
