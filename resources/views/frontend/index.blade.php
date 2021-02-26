@@ -28,7 +28,7 @@
 </head>
 
 <body id="page-top">
-{{-- <?php
+<?php
   $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
   $positif =json_decode($datapositif, true);
   $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
@@ -41,7 +41,7 @@
   $idprovinsi = json_decode($dataidprovinsi, true);
   $datadunia = file_get_contents("https://api.kawalcorona.com/");
   $dunia = json_decode($datadunia, true);
-?> --}}
+?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -167,7 +167,7 @@
      
     <!-- ======== End Table Section Provinsi ======= -->
 
-    {{-- <!-- ======== Table Section Global ======= -->
+    <!-- ======== Table Section Global ======= -->
     <section id="global" class="global">
       <div class="container">
 
@@ -211,7 +211,7 @@
 
       </div>
       </section>
-    <!-- ======== End Table Section Global ======= --> --}}
+    <!-- ======== End Table Section Global ======= -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
