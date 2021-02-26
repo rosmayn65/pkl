@@ -123,30 +123,61 @@
     </section><!-- End Portfolio Section -->
 
     <!-- ======== Table Section Provinsi ======= -->
-    <div class="card">
-      <div class="card-header ">
-        <h3 class="card-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h3>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive service">
-          <table class="table table-bordered table-hover mb-0 text-nowrap css-serial">
-            <thead>
-              <tr>
-                <th class="atasbro">NO.</th>
-                <th class="atasbro">Provinsi</th>
-                <th class="atasbro">Positif</th>
-                <th class="atasbro">Sembuh</th>
-                <th class="atasbro">Meninggal</th>
-              </tr>
-            </thead>
-					</table>
-				</div>
-      </div>
-    </div>
+    <section id="provinsi" class="provinsi">
+      <div class="container">
 
-  </div>
-  </section>
-    <!-- ======== End Table Section Provinsi ======= -->
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Data Kasus Provinsi</h2>
+        </div>
+
+        <div class="row content" data-aos="fade-up">
+              
+            <div class="table-wrapper-scroll-y my-custom-scrollbar col-lg-12">
+
+              <table class="table table-bordered table-striped mb-0 " width="100%">
+                <thead>
+                  <tr>
+                    <th scope="col"><center>No</center></th>
+                    <th scope="col"><center>Provinsi</center></th>
+                    <th scope="col"><center>Jumlah Positif</center></th>
+                    <th scope="col"><center>Jumlah Sembuh</center></th>
+                    <th scope="col"><center>Jumlah Meninggal</center></th>
+                  </tr>
+                </thead>
+              <tbody>
+              @php
+                $no = 1;
+              @endphp
+                @foreach($tampil as $data)
+                    <tr>
+                     <th scope="row">
+                         <center>{{ $no++ }}</center>
+                    </th>
+                    <td>
+                         <center>{{ $data->nama_prov}}</center>
+                    </td>
+                    <td>
+                        <center>{{ number_format($data->jml_positif)}}</center>
+                    </td>
+                    <td>
+                         <center>{{ number_format($data->jml_sembuh)}}</center>
+                    </td>
+                    <td>
+                         <center>{{  ($data->jml_meninggal)}}</center>
+                    </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </section>
+     
+    <!-- ======== End Table Section Global ======= -->
 
     <!-- ======== Table Section Global ======= -->
     <section id="global" class="global">

@@ -13,6 +13,14 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            <label for="">Pilih Provinsi</label>
+                            <select name="id_provinsi" id="" class="form-control">
+                                @foreach($provinsi as $data)
+                                    <option value="{{$data->id}}" {{$data->id == $kota->id_provinsi ? 'selected' : '' }}>{{$data->nama_prov}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="">Kode Kota</label>
                             <input type="text" name="kode_kota" value="{{$kota->kode_kota}}" class="form-control" required>
                             @if ($errors->has('kode_kota'))
@@ -26,23 +34,9 @@
                             <span class="text-danger">{{$error->first('nama_kota')}}</span>
                         @endif
                         </div>
-                        
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Provinsi</label>
-                            <select class="form-control" name="id_provinsi" id="exampleFormControlSelect1">
-                                @foreach($provinsi as $data)
-                                <option value="{{$data->id}}"
-                                    @if($data->nama_prov == $kota->provinsi->nama_prov)
-                                    selected
-                                @endif
-                                >
-                                {{$data->nama_prov}}
-                                </option>
-                                @endforeach
-                            </select>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Simpan</button>
-                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>

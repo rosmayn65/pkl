@@ -22,52 +22,27 @@ use App\Http\Controllers\FrontendController;
 */
 
 Route::get('/', function () {
-    return view('frontend.index');
-    
+    return view('welcome');
 });
-
-Route::resource('/index', FrontendController::class);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('admin',[App\Http\Controllers\HomeController::class,'admin']);
 
 //Route Halaman Admin Utama
 Route::get('test', function(){
     return view ('home');
 });
 
-//Routes Provinsi
 Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('provinsi', ProvinsiController::class);
-});
-
-//Routes Kota
-Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('kota', KotaController::class);
-});
-
-//Routes Kecamatan
-Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('kecamatan', KecamatanController::class);
-});
-
-//Routes Kelurahan
-Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('kelurahan', KelurahanController::class);
-});
-
-// Routes Logout
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-//Routes RW
-Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('rw', RwController::class);
-});
-
-//Routes Tracking
-Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('tracking', TrackingController::class);
+    Route::resource('frontend/index', FrontendController::class);
 });
-
-//Route Frontend

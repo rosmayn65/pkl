@@ -38,9 +38,9 @@ class KotaController extends Controller
         ]);
 
         $kota = new Kota();
+        $kota->id_provinsi = $request->id_provinsi;
         $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
-        $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
         return redirect()->route('kota.index');
     }
@@ -69,8 +69,9 @@ class KotaController extends Controller
             'nama_kota.required' => 'Kota harus diisi',
             'nama_kota.unique' => 'Kota telah terdaftar'
         ]);
-
+        
         $kota = Kota::findOrFail($id);
+        $kota->id_provinsi = $request->id_provinsi;
         $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
         $kota->save();

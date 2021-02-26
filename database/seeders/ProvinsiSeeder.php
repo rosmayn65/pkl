@@ -18,7 +18,7 @@ class ProvinsiSeeder extends Seeder
 			['id'=> 12, 'kode_prov'=> 12, 'nama_prov'=> "SUMATERA UTARA"],
 			['id'=> 13, 'kode_prov'=> 13, 'nama_prov'=> "SUMATERA BARAT"],
 			['id'=> 14, 'kode_prov'=> 14, 'nama_prov'=> "RIAU"],
-			['id'=> 15, 'kode_prov'> 15, 'nama_prov'=> "JAMBI"],
+			['id'=> 15, 'kode_prov'=> 15, 'nama_prov'=> "JAMBI"],
 			['id'=> 16, 'kode_prov'=> 16, 'nama_prov'=> "SUMATERA SELATAN"],
 			['id'=> 17, 'kode_prov'=> 17, 'nama_prov'=> "BENGKULU"],
 			['id'=> 18, 'kode_prov'=> 18, 'nama_prov'=> "LAMPUNG"],

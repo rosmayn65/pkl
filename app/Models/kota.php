@@ -9,7 +9,7 @@ class Kota extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['íd','id_provinsi','kode_kota','nama_kota'];
+    protected $fillable = ['id','id_provinsi','kode_kota','nama_kota'];
     protected $table = "kotas";
     public $timestamps = true;
 

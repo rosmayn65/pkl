@@ -43,7 +43,7 @@ class FrontendController extends Controller
              ->join('kotas','kotas.id_provinsi','=','provinsis.id')
              ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
              ->join('kelurahans','kelurahans.id_kec','=','kecamatans.id')
-             ->join('rws','rws.id_kel','=','kelurahans.id')
+             ->join('rws','rws.nama_kel','=','kelurahans.id')
              ->join('trackings','trackings.id_rw','=','rws.id')
              ->select('nama_prov',
                      DB::raw('sum(trackings.jml_positif) as jml_positif'),
