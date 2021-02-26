@@ -25,7 +25,7 @@
                             @foreach($kota as $data)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$data->provinsi->id}}</td>
+                                <td>{{$data->provinsi->nama_prov}}</td>
                                 <td>{{$data->kode_kota}}</td>
                                 <td>{{$data->nama_kota}}</td>
                                 <td>

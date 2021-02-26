@@ -15,7 +15,7 @@ class KotaController extends Controller
     }
     public function index()
     {
-        $kota = Kota::with('provinsi')->get();
+        $kota = Kota::with('Provinsi')->get();
         return view('admin.kota.index', compact('kota'));
     }
 
@@ -53,22 +53,13 @@ class KotaController extends Controller
 
     public function edit($id)
     {
-        $kota = Kota::findOrFail($id)->with('provinsi')->first();
+        $kota = Kota::findOrFail($id);
         $provinsi = Provinsi::all();
         return view('admin.kota.edit', compact('kota','provinsi'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'kode_kota' => 'required|unique:kotas',
-            'nama_kota' => 'required|unique:kotas',
-        ], [
-            'kode_kota.required' => 'Kode kota harus diisi',
-            'kode_kota.unique' => 'Kode kota telah terdaftar',
-            'nama_kota.required' => 'Kota harus diisi',
-            'nama_kota.unique' => 'Kota telah terdaftar'
-        ]);
         
         $kota = Kota::findOrFail($id);
         $kota->id_provinsi = $request->id_provinsi;

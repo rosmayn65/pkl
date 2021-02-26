@@ -21,14 +21,12 @@ use App\Http\Controllers\FrontendController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/',[App\Http\Controllers\FrontendController::class,'index']);
 
 Route::get('admin',[App\Http\Controllers\HomeController::class,'admin']);
 
@@ -44,5 +42,4 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth']], function () {
     Route::resource('kelurahan', KelurahanController::class);
     Route::resource('rw', RwController::class);
     Route::resource('tracking', TrackingController::class);
-    Route::resource('frontend/index', FrontendController::class);
 });

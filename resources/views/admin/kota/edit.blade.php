@@ -16,7 +16,8 @@
                             <label for="">Pilih Provinsi</label>
                             <select name="id_provinsi" id="" class="form-control">
                                 @foreach($provinsi as $data)
-                                    <option value="{{$data->id}}" {{$data->id == $kota->id_provinsi ? 'selected' : '' }}>{{$data->nama_prov}}</option>
+                                    <option value="{{$data->id}}"
+                                         {{$data->id == $kota->id_provinsi ? "selected" : "" }}>{{$data->nama_prov}}</option>
                                 @endforeach
                             </select>
                         </div>

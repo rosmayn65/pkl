@@ -28,7 +28,7 @@
 </head>
 
 <body id="page-top">
-<?php
+{{-- <?php
   $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
   $positif =json_decode($datapositif, true);
   $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
@@ -41,7 +41,7 @@
   $idprovinsi = json_decode($dataidprovinsi, true);
   $datadunia = file_get_contents("https://api.kawalcorona.com/");
   $dunia = json_decode($datadunia, true);
-?>
+?> --}}
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -150,36 +150,24 @@
               @endphp
                 @foreach($tampil as $data)
                     <tr>
-                     <th scope="row">
-                         <center>{{ $no++ }}</center>
-                    </th>
-                    <td>
-                         <center>{{ $data->nama_prov}}</center>
-                    </td>
-                    <td>
-                        <center>{{ number_format($data->jml_positif)}}</center>
-                    </td>
-                    <td>
-                         <center>{{ number_format($data->jml_sembuh)}}</center>
-                    </td>
-                    <td>
-                         <center>{{  ($data->jml_meninggal)}}</center>
-                    </td>
+                    <th scope="row"><center>{{ $no++ }}</center></th>
+                    <td><center>{{ $data->nama_prov}}</center></td>
+                    <td><center>{{ number_format($data->jml_positif)}}</center></td>
+                    <td><center>{{ number_format($data->jml_sembuh)}}</center></td>
+                    <td><center>{{  ($data->jml_meninggal)}}</center></td>
                     </tr>
                   @endforeach
                 </tbody>
-                
               </table>
             </div>
           </div>
         </div>
-
       </div>
-      </section>
+    </section>
      
-    <!-- ======== End Table Section Global ======= -->
+    <!-- ======== End Table Section Provinsi ======= -->
 
-    <!-- ======== Table Section Global ======= -->
+    {{-- <!-- ======== Table Section Global ======= -->
     <section id="global" class="global">
       <div class="container">
 
@@ -223,7 +211,7 @@
 
       </div>
       </section>
-    <!-- ======== End Table Section Global ======= -->
+    <!-- ======== End Table Section Global ======= --> --}}
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
