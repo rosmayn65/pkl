@@ -56,13 +56,12 @@ class TrackingController extends Controller
 
     public function edit($id)
     {
-        $rw = Rw::all();
         $tracking = Tracking::findOrFail($id);
-        return view('admin.tracking.edit',compact('tracking','rw'));
+        return view('admin.tracking.edit',compact('tracking'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
         $tracking = Tracking::findOrFail($id);
         $tracking->id_rw = $request->id_rw;

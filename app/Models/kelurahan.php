@@ -18,6 +18,6 @@ class kelurahan extends Model
     }
 
     public function rw(){
-        return $this->hasMany('App\Models\rw', 'id_rw');
+        return $this->hasMany('App\Models\rw', 'nama_kel');
     }
 }

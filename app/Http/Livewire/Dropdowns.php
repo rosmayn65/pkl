@@ -24,7 +24,7 @@ class Dropdowns extends Component
     public $selectedKelurahan = null;
     public $selectedRw = null;
 
-    public function mount($selectedRw = null, $track_id = null)
+    public function mount($selectedRw = null)
     {
         $this->provinsi = Provinsi::all();
         $this->kota = collect();
