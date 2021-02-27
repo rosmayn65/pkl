@@ -14,41 +14,55 @@ use Illuminate\Support\Carbon;
 
 class FrontendController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-    // Count Up
-    $positif = DB::table('trackings')
-       ->('jml_positif'); 
-   $sembuh = DB::table('trackings')
-       ->('jml_sembuh');
-   $meninggal = DB::table('trackings')
-       ->('jml_meninggal');
+       // Count Up
+       $positif = DB::table('rws')
+       ->select('trackings.jml_positif',
+       'trackings.jml_sembuh', 'trackings.jml_meninggal')
+       ->join('trackings','rws.id','=','trackings.id_rw')
+       ->sum('trackings.jml_positif'); 
+   $sembuh = DB::table('rws')
+       ->select('trackings.jml_positif',
+       'trackings.jml_sembuh','trackings.jml_meninggal')
+       ->join('trackings','rws.id','=','trackings.id_rw')
+       ->sum('trackings.jml_sembuh');
+   $meninggal = DB::table('rws')
+       ->select('trackings.jml_positif',
+       'trackings.jml_sembuh','trackings.jml_meninggal')
+       ->join('trackings','rws.id','=','trackings.id_rw')
+       ->sum('trackings.jml_meninggal');
    $global = file_get_contents('https://api.kawalcorona.com/positif');
-   $postglobal = json_decode($global, TRUE);
+   $posglobal = json_decode($global, TRUE);
 
    // Date
    $tanggal = Carbon::now()->format('D d-M-Y');
 
    // Table Provinsi
    $tampil = DB::table('provinsis')
-                  ->select('provinsis.id', 'provinsis.nama_prov', 'provinsis.kode_prov',
-                      DB::raw('sum(trackings.jml_positif) as jml_positif'),
-                      DB::raw('sum(trackings.jml_sembuh) as jml_sembuh'),
-                      DB::raw('sum(trackings.jml_meninggal) as jml_meninggal'))
-                  ->join('kotas', 'provinsis.id', '=', 'kotas.id_provinsi')
-                  ->join('kecamatans', 'kotas.id', '=', 'kecamatans.id_kota')
-                  ->join('kelurahans', 'kecamatans.id', '=', 'kelurahans.id_kec')
-                  ->join('rws', 'kelurahans.id', '=', 'rws.id_kel')
-                  ->join('trackings', 'rws.id', '=', 'trackings.id_rw')
-                  ->groupBy('provinsis.id')
-                  ->get();
+             ->join('kotas','kotas.id_provinsi','=','provinsis.id')
+             ->join('kecamatans','kecamatans.id_kota','=','kotas.id')
+             ->join('kelurahans','kelurahans.id_kec','=','kecamatans.id')
+             ->join('rws','rws.nama_kel','=','kelurahans.id')
+             ->join('trackings','trackings.id_rw','=','rws.id')
+             ->select('nama_prov',
+                     DB::raw('sum(trackings.jml_positif) as jml_positif'),
+                     DB::raw('sum(trackings.jml_sembuh) as jml_sembuh'),
+                     DB::raw('sum(trackings.jml_meninggal) as jml_meninggal'))
+             ->groupBy('nama_prov')->orderBy('nama_prov','ASC')
+             ->get();
 
    // Table Global
    $datadunia= file_get_contents("https://api.kawalcorona.com/");
-   $dunia = json_decode($datadunia, true);
+   $dunia = json_decode($datadunia, TRUE);
        
-   return view('frontend.index',compact('positif','sembuh','meninggal','postglobal', 'tanggal','tampil','dunia'));
-    }
+   return view('frontend.index',compact('positif','sembuh','meninggal','posglobal', 'tanggal','tampil','dunia'));
+}
     /**
      * Show the form for creating a new resource.
      *

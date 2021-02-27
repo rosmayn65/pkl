@@ -39,8 +39,6 @@
   $id = json_decode($dataid, true);
   $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
   $idprovinsi = json_decode($dataidprovinsi, true);
-  $datadunia = file_get_contents("https://api.kawalcorona.com/");
-  $dunia = json_decode($datadunia, true);
 ?>
 
   <!-- ======= Header ======= -->
@@ -55,11 +53,15 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#portfolio">Data Kasus</a></li>
+        <li class="active"></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#datakasus">Data kasus</a></li>
+          <li><a href="#provinsi">Provinsi</a></li>
+          <li><a href="#global">Global</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
 
+          
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -75,7 +77,7 @@
   <main id="main">
 
     <!-- ======= Counts Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <section id="datakasus" class="datakasus">
     <section id="counts" class="counts">
       <div class="container">
 
@@ -120,7 +122,6 @@
         </div><br><br>
       </div>
     </section><!-- End Counts Section -->
-    </section><!-- End Portfolio Section -->
 
     <!-- ======== Table Section Provinsi ======= -->
     <section id="provinsi" class="provinsi">
@@ -139,9 +140,9 @@
                   <tr>
                     <th scope="col"><center>No</center></th>
                     <th scope="col"><center>Provinsi</center></th>
-                    <th scope="col"><center>Jumlah Positif</center></th>
-                    <th scope="col"><center>Jumlah Sembuh</center></th>
-                    <th scope="col"><center>Jumlah Meninggal</center></th>
+                    <th scope="col"><center>Positif</center></th>
+                    <th scope="col"><center>Sembuh</center></th>
+                    <th scope="col"><center>Meninggal</center></th>
                   </tr>
                 </thead>
               <tbody>
@@ -171,38 +172,22 @@
     <section id="global" class="global">
       <div class="container">
 
-        <div class="card">
-          <div class="card-header ">
-            <h3 class="card-title">Kasus Coronavirus Global</h3>
-          </div>
+        <div class="section-title">
+          <h2>Data Kasus Global</h2>
+        </div>
+
           <div class="card-body">
             <div class="table-responsive service">
               <table class="table table-bordered table-hover mb-0 text-nowrap css-serial">
                 <thead>
                   <tr>
-                    <th class="atasbro">NO.</th>
-                    <th class="atasbro">Negara</th>
-                    <th class="atasbro">Positif</th>
-                    <th class="atasbro">Sembuh</th>
-                    <th class="atasbro">Meninggal</th>
+                    <th scope="col"><center>No</center></th>
+                    <th scope="col"><center>Negara</center></th>
+                    <th scope="col"><center>Positif</center></th>
+                    <th scope="col"><center>Sembuh</center></th>
+                    <th scope="col"><center>Meninggal</center></th>
                   </tr>
                 </thead>
-
-              <tbody>
-              @php
-                $no = 1;
-              @endphp
-
-                @foreach($dunia as $data)
-                    <tr>
-                      <td> <?php echo $no++ ?></td>
-                      <td> <?php echo $data['attributes']['Country_Region'] ?></td>
-                      <td> <?php echo number_format($data['attributes']['Confirmed']) ?></td>
-                      <td><?php echo number_format($data['attributes']['Recovered'])?></td>
-                      <td><?php echo number_format($data['attributes']['Deaths'])?></td>
-                    </tr>
-                  @endforeach
-                </tbody>
                 
               </table>
             </div>
