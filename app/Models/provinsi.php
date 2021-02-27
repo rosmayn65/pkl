@@ -11,6 +11,7 @@ class provinsi extends Model
 
     protected $fillable = ['id','kode_prov','nama_prov'];
     public $timestamps = true;
+    protected $table = "provinsis";
 
     public function kota(){
 
