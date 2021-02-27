@@ -37,8 +37,6 @@ class FrontendController extends Controller
        'trackings.jml_sembuh','trackings.jml_meninggal')
        ->join('trackings','rws.id','=','trackings.id_rw')
        ->sum('trackings.jml_meninggal');
-   $global = file_get_contents('https://api.kawalcorona.com/positif');
-   $posglobal = json_decode($global, TRUE);
 
    // Date
    $tanggal = Carbon::now()->format('D d-M-Y');
@@ -58,10 +56,8 @@ class FrontendController extends Controller
              ->get();
 
    // Table Global
-   $datadunia= file_get_contents("https://api.kawalcorona.com/");
-   $dunia = json_decode($datadunia, TRUE);
        
-   return view('frontend.index',compact('positif','sembuh','meninggal','posglobal', 'tanggal','tampil','dunia'));
+   return view('frontend.index',compact('positif','sembuh','meninggal', 'tanggal','tampil'));
 }
     /**
      * Show the form for creating a new resource.
@@ -84,7 +80,7 @@ class FrontendController extends Controller
         //
     }
 
-    /**
+    /** 
      * Display the specified resource.
      *
      * @param  int  $id

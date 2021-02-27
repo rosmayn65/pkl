@@ -27,20 +27,7 @@
   <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
 </head>
 
-<body id="page-top">
-<?php
-  $datapositif = file_get_contents("https://api.kawalcorona.com/positif");
-  $positif =json_decode($datapositif, true);
-  $datasembuh = file_get_contents("https://api.kawalcorona.com/sembuh");
-  $sembuh = json_decode($datasembuh, true);
-  $datameninggal = file_get_contents("https://api.kawalcorona.com/meninggal");
-  $meninggal = json_decode($datameninggal, true);
-  $dataid = file_get_contents("https://api.kawalcorona.com/indonesia");
-  $id = json_decode($dataid, true);
-  $dataidprovinsi = file_get_contents("https://api.kawalcorona.com/indonesia/provinsi");
-  $idprovinsi = json_decode($dataidprovinsi, true);
-?>
-
+<body id=>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -55,7 +42,7 @@
         <ul>
         <li class="active"></li>
           <li><a href="#">Home</a></li>
-          <li><a href="#datakasus">Data kasus</a></li>
+          <li><a href="#datakasus">Data Kasus</a></li>
           <li><a href="#provinsi">Provinsi</a></li>
           <li><a href="#global">Global</a></li>
           <li><a href="#about">About</a></li>
@@ -90,7 +77,7 @@
           <div class="col-lg-3 col-6">
             <div class="count-box">
               <i class="icofont-plus"></i> <br>
-              <span data-toggle="counter-up"><?php echo $positif['value']?></span>
+              <span data-toggle="counter-up">{{$positif}}</span>
               <p>Total Positif</p>
             </div>
           </div>
@@ -98,7 +85,7 @@
           <div class="col-lg-3 col-6">
             <div class="count-box">
               <i class="icofont-heart-beat-alt"></i> <br>
-              <span data-toggle="counter-up"><?php echo $sembuh['value']?></span>
+              <span data-toggle="counter-up">{{$sembuh}}</span>
               <p>Total Sembuh</p>
             </div>
           </div>
@@ -106,7 +93,7 @@
           <div class="col-lg-3 col-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="icofont-skull-danger"></i> <br>
-              <span data-toggle="counter-up"><?php echo $meninggal['value']?></span>
+              <span data-toggle="counter-up">{{$meninggal}}</span>
               <p>Total Meninggal</p>
             </div>
           </div>
@@ -114,7 +101,7 @@
           <div class="col-lg-3 col-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="icofont-globe"></i> <br>
-              <span data-toggle="counter-up"><?php echo $id[0]['positif']?></span>
+              <span data-toggle="counter-up"></span>
               <p>Kasus Data Global</p>
             </div>
           </div>
@@ -132,9 +119,7 @@
         </div>
 
         <div class="row content" data-aos="fade-up">
-              
             <div class="table-wrapper-scroll-y my-custom-scrollbar col-lg-12">
-
               <table class="table table-bordered table-striped mb-0 " width="100%">
                 <thead>
                   <tr>
@@ -172,13 +157,13 @@
     <section id="global" class="global">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-aos="zoom-out">
           <h2>Data Kasus Global</h2>
         </div>
 
-          <div class="card-body">
-            <div class="table-responsive service">
-              <table class="table table-bordered table-hover mb-0 text-nowrap css-serial">
+          <div class="row content" data-aos="fade-up">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar col-lg-12">
+              <table class="table table-bordered table-striped mb-0 " width="100%">
                 <thead>
                   <tr>
                     <th scope="col"><center>No</center></th>
@@ -228,8 +213,7 @@
 
       </div>
     </section><!-- End About Section -->
-
-    <!-- ======= Contact Section ======= -->
+    
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
       <div class="container">
